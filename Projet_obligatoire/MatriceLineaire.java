@@ -5,10 +5,10 @@ public class MatriceLineaire implements Matrice
     int matrice[][];
     static int nbr = 0;
 
-    public MatriceLineaire(int hauteur, int largeur)
+    public MatriceLineaire(int taille)
     {
-        this.hauteur = hauteur;
-        this.largeur = largeur;
+        this.hauteur = taille;
+        this.largeur = taille;
         matrice = new int[this.hauteur][this.largeur];
         initDiagonale();
         initInf();
@@ -17,6 +17,7 @@ public class MatriceLineaire implements Matrice
 
     public void afficherMatrice()
     {
+        System.out.println("Matrice lineaire :");
         for(int i = 0; i < this.hauteur; i++)
         {
             for(int j = 0; j < this.largeur; j++)

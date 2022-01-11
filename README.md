@@ -1,4 +1,4 @@
-# L3_ISEI_S5-Programmation_objet_multiplateformes
+# L3_ISEI_S5-Programmation_objet_multiplateforme
 
 ## Projet obligatoire
 Créer un programme permettant de gérer des matrices sous 3 formes différentes : 
