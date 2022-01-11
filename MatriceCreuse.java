@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class MatriceCreuse implements Matrice
 {
     int hauteur;
@@ -5,12 +7,13 @@ public class MatriceCreuse implements Matrice
     int matrice[][];
     //static int nbr = 0;
 
-    /*public MatriceCreuse(int taille)
+    public MatriceCreuse(int taille)
     {
         this.hauteur = taille;
         this.largeur = taille;
         matrice = new int[this.hauteur][this.largeur];
-    }*/
+        initMatrice();
+    }
 
     public MatriceCreuse(MatriceLineaire ml)
     {
@@ -38,6 +41,40 @@ public class MatriceCreuse implements Matrice
             System.out.println();
         }
         System.out.println();
+    }
+
+    public void modifierValeur(int x, int y, int valeur)
+    {
+        if(x >= 0 && x < this.hauteur)
+        {
+            this.matrice[x][y] = valeur;
+            System.out.println("Valeur modifiee.\n");
+        }
+        else
+        {
+            System.out.println("Valeurs non valides.\n");
+        }
+    }
+
+    public void initMatrice()
+    {
+        System.out.println("Veuillez indiquer les cases non nulles de la matrice sous la forme suivante : x(hauteur) y(largeur) valeur");
+        System.out.println("Exemple :\n0 0 5");
+        System.out.println("Attention : une case deja enregistree sera reecrite.");
+
+        Scanner in = new Scanner(System.in);
+        int fin = 1;
+        while(fin != 0)
+        {
+            System.out.println("Nouvelle valeur : ");
+            modifierValeur(in.nextInt(), in.nextInt(), in.nextInt());
+
+            System.out.println("Continuer ?");
+            System.out.println("0 : non");
+            System.out.println("1 : oui");
+            fin = in.nextInt();
+        }
+        System.out.println("Fin de l'entree des donnees.\n");
     }
 
     public void initDiagonale()

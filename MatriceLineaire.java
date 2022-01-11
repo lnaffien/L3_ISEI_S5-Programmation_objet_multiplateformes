@@ -15,20 +15,6 @@ public class MatriceLineaire implements Matrice
         initSup();
     }
 
-    public void afficherMatrice()
-    {
-        System.out.println("Matrice lineaire :");
-        for(int i = 0; i < this.hauteur; i++)
-        {
-            for(int j = 0; j < this.largeur; j++)
-            {
-                System.out.print(this.matrice[i][j] + " | ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
     public void initDiagonale()
     {
         int i = 0;
@@ -79,5 +65,20 @@ public class MatriceLineaire implements Matrice
                 h_cursor ++;
             }
         }
+    }
+    
+
+    public void afficherMatrice()
+    {
+        System.out.println("Matrice lineaire :");
+        for(int i = 0; i < this.hauteur; i++)
+        {
+            for(int j = 0; j < this.largeur; j++)
+            {
+                System.out.print(this.matrice[i][j] + " | ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }

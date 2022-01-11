@@ -35,26 +35,16 @@ public class Main
                 break;
             case 2 :
                 ml = new MatriceCreuse(taille);
+                ml.afficherMatrice();
                 break;
             case 3 :
-                ml = new MatriceDense(taille);
+                // ml = new MatriceDense(taille);
+                // ml.afficherMatrice();
                 break;
             default : 
                 throw new ArithmeticException("Type de matrice invalide, veuillez relancer le programme.");
-        }
+        }        
 
-        
-
-        System.out.println("Veuillez indiquer les cases non nulles de la matrice sous la forme suivante : x(largeur) y(hauteur) valeur");
-        System.out.println("Exemple :\n 0 0 5");
-        System.out.println("Attention : une case deja enregistree sera reecrite.");
-        System.out.println("Une fois termine, rentrez une valeur non valide (une lettre, un nombre reel...).");
-        int x;
-        int y;
-        int value;
-        /*while(1)
-        {
-
-        }*/
+       
     }
 }
