@@ -6,9 +6,6 @@
 Cette classe appartient a un projet realise pour le module "Programmation objet multiplateformes", enseigne par M. MARIAGE, dans le cadre 
 de la 3eme annee de licence parcours Informatique des Systemes Embarques et Interactifs de l'Universite Paris 8.
 
-Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Programmation_objet_multiplateformes
-
-
 ************************************************************************************************************************************************/
 
 import java.util.ArrayList;
@@ -24,6 +21,10 @@ public class MatriceDense extends Matrice
      * 
      *************************************************/
 
+    /**
+     * Constructeur.
+     * @param taille taille de la matrice carree
+     */
     public MatriceDense(int taille)
     {
         super(taille);
@@ -34,6 +35,10 @@ public class MatriceDense extends Matrice
         arrayListToArrayDense();
     }
 
+    /**
+     * Constructeur : creation de la matrice a partir d'une autre.
+     * @param m matrice initiale
+     */
     public MatriceDense(Matrice m)
     {
         super(m);
@@ -49,7 +54,7 @@ public class MatriceDense extends Matrice
      *              Methodes
      * 
      *************************************************/
-
+    
     @Override
     public void modifierValeur(int x, int y, int valeur)
     {
@@ -60,6 +65,7 @@ public class MatriceDense extends Matrice
             if(index_doublon != -1)
             {
                 matrice_dense_liste.get(index_doublon).set(2, valeur);
+                System.out.println("Valeur modifiee.\n");
             }
             else
             {
@@ -68,10 +74,21 @@ public class MatriceDense extends Matrice
                 ligne.add(y);
                 ligne.add(valeur);
                 matrice_dense_liste.add(ligne);
+                System.out.println("Valeur ecrasee.\n");
             }            
+        }
+        else
+        {
+            System.out.println("Valeurs non valides.\n");
         }
     }
 
+    /**
+     * Verifie qu'aucune valeur n'a deja ete enregistree a l'index de la matrice donne.
+     * @param x position dans la hauteur de la matrice
+     * @param y position dans la hauteur de la matrice
+     * @return -1 si 
+     */
     private int existeDeja(int x, int y)
     {
         for(ArrayList<Integer> ligne : matrice_dense_liste)
@@ -91,7 +108,7 @@ public class MatriceDense extends Matrice
         System.out.println(matrice_dense_liste.toString());
     }
 
-    private void arrayListToArray()
+    public void arrayListToArray()
     {
         for (ArrayList<Integer> ligne : matrice_dense_liste)
         {
@@ -99,7 +116,7 @@ public class MatriceDense extends Matrice
         }
     }
 
-    private void arrayListToArrayDense()
+    public void arrayListToArrayDense()
     {
         matrice_dense_tab = new int[this.matrice_dense_liste.size()][3];
         int cursor = 0;
@@ -117,7 +134,7 @@ public class MatriceDense extends Matrice
 
     public void afficherMatriceDense()
     {
-        System.out.println(this.getClass() + " (dense) :");
+        System.out.println(this.getClass() + " (forme dense) :");
         for(int i = 0; i < matrice_dense_tab.length; i++)
         {
             for(int j = 0; j < 3; j++)

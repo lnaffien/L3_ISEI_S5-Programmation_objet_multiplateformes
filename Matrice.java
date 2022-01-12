@@ -6,9 +6,6 @@
 Cette classe appartient a un projet realise pour le module "Programmation objet multiplateformes", enseigne par M. MARIAGE, dans le cadre 
 de la 3eme annee de licence parcours Informatique des Systemes Embarques et Interactifs de l'Universite Paris 8.
 
-Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Programmation_objet_multiplateformes
-
-
 ************************************************************************************************************************************************/
 
 import java.util.Scanner;
@@ -26,6 +23,10 @@ public abstract class Matrice
      * 
      *************************************************/
 
+    /**
+     * Constructeur.
+     * @param taille taille de la matrice carree
+     */
     public Matrice(int taille)
     {
         if(taille <= 0)
@@ -39,6 +40,10 @@ public abstract class Matrice
         matrice = new int[this.hauteur][this.largeur];
     }
 
+    /**
+     * Constructeur : creation de la matrice a partir d'une autre.
+     * @param m matrice initiale
+     */
     public Matrice(Matrice m)
     {
         if(m == null)
@@ -57,6 +62,9 @@ public abstract class Matrice
      * 
      *************************************************/
 
+    /**
+     * Affiche la matrice.
+     */
     public void afficherMatrice()
     {        
         System.out.println(this.getClass() + " :");
@@ -70,7 +78,13 @@ public abstract class Matrice
         }
         System.out.println();
     }
-
+    
+    /** 
+     * Modifie une valeur a une position donnee dans la matrice.
+     * @param x position dans la hauteur de la matrice
+     * @param y position dans la largeur de la matrice
+     * @param valeur nouvelle valeur a ajouter
+     */
     public void modifierValeur(int x, int y, int valeur)
     {
         if((x >= 0 && x < this.hauteur) && (y >= 0 && y < this.largeur))
@@ -84,6 +98,9 @@ public abstract class Matrice
         }
     } 
 
+    /**
+     * Initialisation manuelle de la matrice.
+     */
     protected void initMatrice()
     {
         System.out.println("Veuillez indiquer les cases non nulles de la matrice sous la forme suivante : x(hauteur) y(largeur) valeur");
@@ -105,23 +122,24 @@ public abstract class Matrice
         in.close();
     }
 
+    
+    /** 
+     * Initialisation de la matrice a partir d'une autre.
+     * @param m matrice initiale.
+     */
     protected void initMatrice(Matrice m)
     {
         for(int i = 0; i < this.hauteur; i++)
         {
             for(int j = 0; j < this.largeur; j++)
             {
-                /* Si la valeur vaut 0, celle-ci n'est pas ecrite dans la matrice grace aux lignes commentees ci-dessous.
-                 * Si la matrice contient de nombreuses valeurs non nulles, elles rajoutent cependant un certain temps d'execution.
-                 * A decommenter donc en fonction des cas. */
-                // if(m.matrice[i][j] != 0)
-                // {
+                if(m.matrice[i][j] != 0)
+                {
                     this.matrice[i][j] = m.matrice[i][j];
-                // }
+                }
             }
         }
     }
-
     
 
 }

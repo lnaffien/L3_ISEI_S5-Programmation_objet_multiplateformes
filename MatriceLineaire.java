@@ -6,9 +6,6 @@
 Cette classe appartient a un projet realise pour le module "Programmation objet multiplateformes", enseigne par M. MARIAGE, dans le cadre 
 de la 3eme annee de licence parcours Informatique des Systemes Embarques et Interactifs de l'Universite Paris 8.
 
-Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Programmation_objet_multiplateformes
-
-
 ************************************************************************************************************************************************/
 
 public class MatriceLineaire extends Matrice
@@ -19,12 +16,20 @@ public class MatriceLineaire extends Matrice
      * 
      *************************************************/
 
+    /**
+     * Constructeur.
+     * @param taille taille de la matrice carree
+     */
     public MatriceLineaire(int taille)
     {
         super(taille);
         initMatrice();
     }
 
+    /**
+     * Constructeur : creation de la matrice a partir d'une autre.
+     * @param m matrice initiale
+     */
     public MatriceLineaire(Matrice m)
     {
         super(m);
@@ -41,15 +46,22 @@ public class MatriceLineaire extends Matrice
      * Initialisation a partir des donnees entrees
      *************************************************/
 
+    /**
+     * Initialisation manuelle de la matrice.
+     * Initialisation separee de la diagonale, de la partie inferieure et de la partie superieure.
+     */
     @Override
-    public void initMatrice()
+    protected void initMatrice()
     {
         initDiagonale();
         initInf();
         initSup();
     }
 
-    public void initDiagonale()
+    /**
+     * Initialisation manuelle de la diagonale.
+     */
+    private void initDiagonale()
     {
         int i = 0;
         int j = 0;
@@ -65,7 +77,10 @@ public class MatriceLineaire extends Matrice
         this.afficherMatrice();
     }
 
-    public void initInf()
+    /**
+     * Initialisation manuelle de la partie inferieure.
+     */
+    private void initInf()
     {
         int h_cursor = 1;
         int w_cursor = 0;
@@ -90,7 +105,10 @@ public class MatriceLineaire extends Matrice
         this.afficherMatrice();
     }
 
-    public void initSup()
+    /**
+     * Initialisation manuelle de la partie superieure.
+     */
+    private void initSup()
     {
         int h_cursor = 0;
         int w_cursor = 1;
@@ -119,6 +137,11 @@ public class MatriceLineaire extends Matrice
      * Initialisation a partir d'une autre matrice
      *************************************************/
 
+    /**
+     * Initialisation de la matrice a partir d'une autre.
+     * Initialisation separee de la diagonale, de la partie inferieure et de la partie superieure.
+     * @param m matrice initiale
+     */
     @Override
     protected void initMatrice(Matrice m)
     {
@@ -127,22 +150,27 @@ public class MatriceLineaire extends Matrice
         initSup(m);
     }
 
-    public void initDiagonale(Matrice m)
+    /**
+     * Initialisation de la diagonale a partir d'une autre matrice.
+     * @param m matrice initiale
+     */
+    private void initDiagonale(Matrice m)
     {
         int i = 0;
         int j = 0;
         while(i < this.hauteur && j < this.largeur)
         {
-            if(m.matrice[i][j] != 0)
-            {
-                this.matrice[i][j] = m.matrice[i][j];
-            }
+            this.matrice[i][j] = m.matrice[i][j];
             i++;
             j++;
         }
     }
 
-    public void initInf(Matrice m)
+    /**
+     * Initialisation de la partie inferieure a partir d'une autre matrice.
+     * @param m matrice initiale
+     */
+    private void initInf(Matrice m)
     {
         int h_cursor = 1;
         int w_cursor = 0;
@@ -150,12 +178,10 @@ public class MatriceLineaire extends Matrice
 
         while(h_cursor < this.hauteur)
         {
-            if(m.matrice[h_cursor][w_cursor] != 0)
-            {
-                this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
-            }
+            this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
             w_cursor ++;
 
+            // Mise a jour du curseur lorsqu'il atteint la diagonale ou le bord de la matrice.
             if(w_cursor > diagonale || w_cursor >= this.largeur)
             {
                 w_cursor = 0;
@@ -165,7 +191,11 @@ public class MatriceLineaire extends Matrice
         }
     }
 
-    public void initSup(Matrice m)
+    /**
+     * Initialisation de la partie superieure a partir d'une autre matrice.
+     * @param m matrice initiale
+     */
+    private void initSup(Matrice m)
     {
         int h_cursor = 0;
         int w_cursor = 1;
@@ -173,12 +203,10 @@ public class MatriceLineaire extends Matrice
 
         while(h_cursor < this.hauteur && w_cursor < this.largeur)
         {
-            if(m.matrice[h_cursor][w_cursor] != 0)
-            {
-                this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
-            }
+            this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
             w_cursor ++;
 
+            // Mise a jour du curseur lorsqu'il atteint le bord de la matrice.
             if(w_cursor >= this.largeur)
             {
                 diagonale ++;
