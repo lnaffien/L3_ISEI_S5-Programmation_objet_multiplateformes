@@ -5,7 +5,7 @@ public class Main
     public static void main(String arg[])
     {
         Scanner in = new Scanner(System.in);
-        Matrice ml;
+        Matrice matrice;
         System.out.println("Bonjour ! Je suis un createur de matrices carrees, pour vous servir !");
 
         int taille; 
@@ -24,25 +24,33 @@ public class Main
         System.out.println("3 : matrice dense");
         type = in.nextInt();
 
-        in.close();
-
         switch(type)
         {
             case 1 : 
-                ml = new MatriceLineaire(taille);
-                ml.afficherMatrice();
+                matrice = new MatriceLineaire(taille);
+                matrice.afficherMatrice();
+                //MatriceCreuse mc = new MatriceCreuse(matrice);
+                // MatriceDense md = new MatriceDense(matrice);
                 break;
             case 2 :
-                ml = new MatriceCreuse(taille);
-                ml.afficherMatrice();
+                matrice = new MatriceCreuse(taille);
+                matrice.afficherMatrice();                
+                // MatriceLineaire ml = new MatriceLineaire(matrice);
+                // MatriceDense md = new MatriceDense(matrice);
                 break;
             case 3 :
-                ml = new MatriceDense(taille);
-                ml.afficherMatrice();
+                matrice = new MatriceDense(taille);
+                matrice.afficherMatrice();                
+                // MatriceLineaire ml = new MatriceLineaire(matrice);
+                // MatriceCreuse mc = new MatriceCreuse(matrice);
                 break;
             default : 
+                in.close();
                 throw new ArithmeticException("Type de matrice invalide, veuillez relancer le programme.");
         }
+
+        
+        in.close();
        
     }
 }

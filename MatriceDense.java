@@ -28,6 +28,11 @@ public class MatriceDense implements Matrice
         initMatrice();
     }
 
+    public MatriceDense(Matrice matrice)
+    {
+        
+    }
+
     public void modifierValeur(int x, int y, int valeur)
     {
         if((x >= 0 && x < this.max_hauteur) && (y >= 0 && y < this.max_largeur))
@@ -48,7 +53,7 @@ public class MatriceDense implements Matrice
         }
     }
 
-    /* existe
+    /* existeDeja : 
      */
     private int existeDeja(int x, int y)
     {

@@ -10,32 +10,41 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 
 
 ************************************************************************************************************************************************/
+import java.util.Scanner;
 
 public class MatriceLineaire implements Matrice
 {
     int hauteur;
     int largeur;
     int matrice[][];
-    static int nbr = 0;
+    Scanner in;
 
     public MatriceLineaire(int taille)
     {
         this.hauteur = taille;
         this.largeur = taille;
         matrice = new int[this.hauteur][this.largeur];
+        in = new Scanner(System.in);
         initDiagonale();
         initInf();
         initSup();
+        in.close();
     }
 
     public void initDiagonale()
     {
         int i = 0;
         int j = 0;
+
+        System.out.println("Initialisation de la diagonale.");
+
         while (i < this.hauteur && j < this.largeur)
         {
-            matrice[i++][j++] = nbr++;
+            System.out.print("[" + i + "][" + j + "] = ");
+            matrice[i++][j++] = in.nextInt();
         }
+        System.out.println();
+        this.afficherMatrice();
     }
 
     public void initInf()
@@ -44,10 +53,12 @@ public class MatriceLineaire implements Matrice
         int w_cursor = 0;
         int diagonale = 0;
 
+        System.out.println("Initialisation de la partie inferieure.");
+
         while(h_cursor < this.hauteur)
         {
-            this.matrice[h_cursor][w_cursor] = nbr;
-            nbr ++;
+            System.out.print("[" + h_cursor + "][" + w_cursor + "] = ");
+            this.matrice[h_cursor][w_cursor] = in.nextInt();
             w_cursor ++;
             
             if(w_cursor > diagonale || w_cursor >= this.largeur)
@@ -57,6 +68,8 @@ public class MatriceLineaire implements Matrice
                 diagonale ++;
             }
         }
+        System.out.println();
+        this.afficherMatrice();
     }
 
     public void initSup()
@@ -65,10 +78,12 @@ public class MatriceLineaire implements Matrice
         int w_cursor = 1;
         int diagonale = 0;
 
+        System.out.println("Initialisation de la partie inferieure.");
+
         while(h_cursor < this.hauteur && w_cursor < this.largeur)
         {
-            this.matrice[h_cursor][w_cursor] = nbr;
-            nbr ++;
+            System.out.print("[" + h_cursor + "][" + w_cursor + "] = ");
+            this.matrice[h_cursor][w_cursor] = in.nextInt();
             w_cursor ++;
 
             if(w_cursor >= this.largeur)
@@ -78,6 +93,8 @@ public class MatriceLineaire implements Matrice
                 h_cursor ++;
             }
         }
+        System.out.println();
+        this.afficherMatrice();
     }
     
 

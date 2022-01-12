@@ -18,7 +18,6 @@ public class MatriceCreuse implements Matrice
     int hauteur;
     int largeur;
     int matrice[][];
-    //static int nbr = 0;
 
     public MatriceCreuse(int taille)
     {
