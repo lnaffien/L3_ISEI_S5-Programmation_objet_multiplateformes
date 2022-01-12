@@ -14,12 +14,7 @@ public class Main
         if(taille <= 0)
         {
             throw new ArithmeticException("Taille invalide, veuillez relancer le programme.");
-        }  
-             
-        // MatriceLineaire matLineaire = new MatriceLineaire(taille);
-        // matLineaire.afficherMatrice();
-        // MatriceCreuse matCreuse = new MatriceCreuse(matLineaire);
-        // matLineaire.afficherMatrice();
+        }
 
         int type = 0;
         System.out.println("Quel est son type initial ?");
@@ -38,8 +33,8 @@ public class Main
                 ml.afficherMatrice();
                 break;
             case 3 :
-                // ml = new MatriceDense(taille);
-                // ml.afficherMatrice();
+                ml = new MatriceDense(taille);
+                ml.afficherMatrice();
                 break;
             default : 
                 throw new ArithmeticException("Type de matrice invalide, veuillez relancer le programme.");

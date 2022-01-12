@@ -45,7 +45,7 @@ public class MatriceCreuse implements Matrice
 
     public void modifierValeur(int x, int y, int valeur)
     {
-        if(x >= 0 && x < this.hauteur)
+        if((x >= 0 && x < this.hauteur) && (y >= 0 && y < this.largeur))
         {
             this.matrice[x][y] = valeur;
             System.out.println("Valeur modifiee.\n");
@@ -75,21 +75,6 @@ public class MatriceCreuse implements Matrice
             fin = in.nextInt();
         }
         System.out.println("Fin de l'entree des donnees.\n");
-    }
-
-    public void initDiagonale()
-    {
-
-    }
-
-    public void initInf()
-    {
-
-    }
-
-    public void initSup()
-    {
-        
     }
     
     public void initDiagonale(MatriceLineaire ml)

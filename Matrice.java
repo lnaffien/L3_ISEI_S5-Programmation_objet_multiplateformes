@@ -8,16 +8,16 @@ public interface Matrice
     /* 
      * initSup : initialise la diagonale de la matrice
      */
-    void initDiagonale();
+   // void initDiagonale();
 
     /* 
      * initSup : initialise la partie inferieure de la matrice
      */
-    void initInf();
+    //void initInf();
 
     /* 
      * initSup : initialise la partie superieure de la matrice
      */
-    void initSup();
+    //void initSup();
 
 }
