@@ -6,6 +6,9 @@
 Cette classe appartient a un projet realise pour le module "Programmation objet multiplateformes", enseigne par M. MARIAGE, dans le cadre 
 de la 3eme annee de licence parcours Informatique des Systemes Embarques et Interactifs de l'Universite Paris 8.
 
+Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Programmation_objet_multiplateformes
+
+
 ************************************************************************************************************************************************/
 
 public class MatriceLineaire extends Matrice
@@ -63,16 +66,19 @@ public class MatriceLineaire extends Matrice
      */
     private void initDiagonale()
     {
-        int i = 0;
-        int j = 0;
+        int h_curseur = 0;  // Curseur pour la hauteur
+        int l_curseur = 0;  // Curseur pour la largeur
 
         System.out.println("Initialisation de la diagonale.");
 
-        while (i < this.hauteur && j < this.largeur)
+        // Tant que les index ne depassent pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
+        while (h_curseur < this.hauteur && l_curseur < this.largeur)
         {
-            System.out.print("[" + i + "][" + j + "] = ");
-            matrice[i++][j++] = in.nextInt();
+            System.out.print("[" + h_curseur + "][" + l_curseur + "] = ");
+            matrice[h_curseur++][l_curseur++] = in.nextInt();
         }
+
+        // Affichage de ce qui a deja ete initialise. 
         System.out.println();
         this.afficherMatrice();
     }
@@ -82,25 +88,30 @@ public class MatriceLineaire extends Matrice
      */
     private void initInf()
     {
-        int h_cursor = 1;
-        int w_cursor = 0;
-        int diagonale = 0;
+        int h_curseur = 1;  // Curseur pour la hauteur
+        int l_curseur = 0;  // Curseur pour la largeur
+        int diagonale = 0;  // Curseur pour la diagonale
 
         System.out.println("Initialisation de la partie inferieure.");
 
-        while(h_cursor < this.hauteur)
+        // Tant que l'index actuel ne depasse pas la hauteur maximale de la matrice, ajout d'une nouvelle valeur.
+        while(h_curseur < this.hauteur)
         {
-            System.out.print("[" + h_cursor + "][" + w_cursor + "] = ");
-            this.matrice[h_cursor][w_cursor] = in.nextInt();
-            w_cursor ++;
+            System.out.print("[" + h_curseur + "][" + l_curseur + "] = ");
+            this.matrice[h_curseur][l_curseur] = in.nextInt();
+
+            l_curseur ++;
             
-            if(w_cursor > diagonale || w_cursor >= this.largeur)
+            // Mise a jour des curseurs s'ils atteignent la diagonale ou la largeur maximale de la matrice.
+            if(l_curseur > diagonale || l_curseur >= this.largeur)
             {
-                w_cursor = 0;
-                h_cursor ++;
+                l_curseur = 0;
+                h_curseur ++;
                 diagonale ++;
             }
         }
+
+        // Affichage de ce qui a deja ete initialise. 
         System.out.println();
         this.afficherMatrice();
     }
@@ -110,25 +121,30 @@ public class MatriceLineaire extends Matrice
      */
     private void initSup()
     {
-        int h_cursor = 0;
-        int w_cursor = 1;
-        int diagonale = 0;
+        int h_curseur = 0;  // Curseur pour la hauteur
+        int l_curseur = 1;  // Curseur pour la largeur
+        int diagonale = 0;  // Curseur pour la diagonale
 
         System.out.println("Initialisation de la partie inferieure.");
 
-        while(h_cursor < this.hauteur && w_cursor < this.largeur)
+        // Tant que l'index actuel ne depasse pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
+        while(h_curseur < this.hauteur && l_curseur < this.largeur)
         {
-            System.out.print("[" + h_cursor + "][" + w_cursor + "] = ");
-            this.matrice[h_cursor][w_cursor] = in.nextInt();
-            w_cursor ++;
+            System.out.print("[" + h_curseur + "][" + l_curseur + "] = ");
+            this.matrice[h_curseur][l_curseur] = in.nextInt();
 
-            if(w_cursor >= this.largeur)
+            l_curseur ++;
+
+            // Mise a jour des curseurs s'ils atteignent la largeur maximale de la matrice.
+            if(l_curseur >= this.largeur)
             {
                 diagonale ++;
-                w_cursor = diagonale + 1;
-                h_cursor ++;
+                l_curseur = diagonale + 1;
+                h_curseur ++;
             }
         }
+
+        // Affichage de ce qui a deja ete initialise. 
         System.out.println();
         this.afficherMatrice();
     }
@@ -156,13 +172,15 @@ public class MatriceLineaire extends Matrice
      */
     private void initDiagonale(Matrice m)
     {
-        int i = 0;
-        int j = 0;
-        while(i < this.hauteur && j < this.largeur)
+        int h_curseur = 0;  // Curseur pour la hauteur
+        int l_curseur = 0;  // Curseur pour la largeur
+
+        // Tant que les index ne depassent pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
+        while(h_curseur < this.hauteur && l_curseur < this.largeur)
         {
-            this.matrice[i][j] = m.matrice[i][j];
-            i++;
-            j++;
+            this.matrice[h_curseur][l_curseur] = m.matrice[h_curseur][l_curseur];
+            h_curseur++;
+            l_curseur++;
         }
     }
 
@@ -172,20 +190,21 @@ public class MatriceLineaire extends Matrice
      */
     private void initInf(Matrice m)
     {
-        int h_cursor = 1;
-        int w_cursor = 0;
-        int diagonale = 0;
+        int h_curseur = 1;  // Curseur pour la hauteur
+        int l_curseur = 0;  // Curseur pour la largeur
+        int diagonale = 0;  // Curseur pour la diagonale
 
-        while(h_cursor < this.hauteur)
+        // Tant que l'index actuel ne depasse pas la hauteur maximale de la matrice, ajout d'une nouvelle valeur.
+        while(h_curseur < this.hauteur)
         {
-            this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
-            w_cursor ++;
+            this.matrice[h_curseur][l_curseur] = m.matrice[h_curseur][l_curseur];
+            l_curseur ++;
 
-            // Mise a jour du curseur lorsqu'il atteint la diagonale ou le bord de la matrice.
-            if(w_cursor > diagonale || w_cursor >= this.largeur)
+            // Mise a jour des curseurs s'ils atteignent la diagonale ou la largeur maximale de la matrice.
+            if(l_curseur > diagonale || l_curseur >= this.largeur)
             {
-                w_cursor = 0;
-                h_cursor ++;
+                l_curseur = 0;
+                h_curseur ++;
                 diagonale ++;
             }
         }
@@ -197,21 +216,22 @@ public class MatriceLineaire extends Matrice
      */
     private void initSup(Matrice m)
     {
-        int h_cursor = 0;
-        int w_cursor = 1;
-        int diagonale = 0;
+        int h_curseur = 0;  // Curseur pour la hauteur
+        int l_curseur = 1;  // Curseur pour la largeur
+        int diagonale = 0;  // Curseur pour la diagonale
 
-        while(h_cursor < this.hauteur && w_cursor < this.largeur)
+        // Tant que l'index actuel ne depasse pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
+        while(h_curseur < this.hauteur && l_curseur < this.largeur)
         {
-            this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
-            w_cursor ++;
+            this.matrice[h_curseur][l_curseur] = m.matrice[h_curseur][l_curseur];
+            l_curseur ++;
 
-            // Mise a jour du curseur lorsqu'il atteint le bord de la matrice.
-            if(w_cursor >= this.largeur)
+            // Mise a jour des curseurs s'ils atteignent la largeur maximale de la matrice.
+            if(l_curseur >= this.largeur)
             {
                 diagonale ++;
-                w_cursor = diagonale + 1;
-                h_cursor ++;
+                l_curseur = diagonale + 1;
+                h_curseur ++;
             }
         }
     }
