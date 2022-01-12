@@ -88,6 +88,7 @@ public class MatriceCreuse implements Matrice
             fin = in.nextInt();
         }
         System.out.println("Fin de l'entree des donnees.\n");
+        in.close();
     }
     
     public void initDiagonale(MatriceLineaire ml)

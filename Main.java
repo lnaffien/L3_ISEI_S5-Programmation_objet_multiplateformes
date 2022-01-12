@@ -13,6 +13,7 @@ public class Main
         taille = in.nextInt();
         if(taille <= 0)
         {
+            in.close();
             throw new ArithmeticException("Taille invalide, veuillez relancer le programme.");
         }
 
@@ -22,6 +23,9 @@ public class Main
         System.out.println("2 : matrice creuse");
         System.out.println("3 : matrice dense");
         type = in.nextInt();
+
+        in.close();
+
         switch(type)
         {
             case 1 : 
@@ -38,8 +42,7 @@ public class Main
                 break;
             default : 
                 throw new ArithmeticException("Type de matrice invalide, veuillez relancer le programme.");
-        }        
-
+        }
        
     }
 }
