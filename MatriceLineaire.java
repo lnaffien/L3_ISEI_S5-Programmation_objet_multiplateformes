@@ -10,25 +10,43 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 
 
 ************************************************************************************************************************************************/
-import java.util.Scanner;
 
-public class MatriceLineaire implements Matrice
+public class MatriceLineaire extends Matrice
 {
-    int hauteur;
-    int largeur;
-    int matrice[][];
-    Scanner in;
+    /*************************************************
+     * 
+     *              Constructeurs
+     * 
+     *************************************************/
 
     public MatriceLineaire(int taille)
     {
-        this.hauteur = taille;
-        this.largeur = taille;
-        matrice = new int[this.hauteur][this.largeur];
-        in = new Scanner(System.in);
+        super(taille);
+        initMatrice();
+    }
+
+    public MatriceLineaire(Matrice m)
+    {
+        super(m);
+        initMatrice(m);
+    }
+
+    /*************************************************
+     * 
+     *              Methodes
+     * 
+     *************************************************/
+
+    /*************************************************
+     * Initialisation a partir des donnees entrees
+     *************************************************/
+
+    @Override
+    public void initMatrice()
+    {
         initDiagonale();
         initInf();
         initSup();
-        in.close();
     }
 
     public void initDiagonale()
@@ -96,19 +114,79 @@ public class MatriceLineaire implements Matrice
         System.out.println();
         this.afficherMatrice();
     }
-    
 
-    public void afficherMatrice()
+    /*************************************************
+     * Initialisation a partir d'une autre matrice
+     *************************************************/
+
+    @Override
+    protected void initMatrice(Matrice m)
     {
-        System.out.println("Matrice lineaire :");
-        for(int i = 0; i < this.hauteur; i++)
-        {
-            for(int j = 0; j < this.largeur; j++)
-            {
-                System.out.print(this.matrice[i][j] + " | ");
-            }
-            System.out.println();
-        }
-        System.out.println();
+        initDiagonale(m);
+        initInf(m);
+        initSup(m);
     }
+
+    public void initDiagonale(Matrice m)
+    {
+        int i = 0;
+        int j = 0;
+        while(i < this.hauteur && j < this.largeur)
+        {
+            if(m.matrice[i][j] != 0)
+            {
+                this.matrice[i][j] = m.matrice[i][j];
+            }
+            i++;
+            j++;
+        }
+    }
+
+    public void initInf(Matrice m)
+    {
+        int h_cursor = 1;
+        int w_cursor = 0;
+        int diagonale = 0;
+
+        while(h_cursor < this.hauteur)
+        {
+            if(m.matrice[h_cursor][w_cursor] != 0)
+            {
+                this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
+            }
+            w_cursor ++;
+
+            if(w_cursor > diagonale || w_cursor >= this.largeur)
+            {
+                w_cursor = 0;
+                h_cursor ++;
+                diagonale ++;
+            }
+        }
+    }
+
+    public void initSup(Matrice m)
+    {
+        int h_cursor = 0;
+        int w_cursor = 1;
+        int diagonale = 0;
+
+        while(h_cursor < this.hauteur && w_cursor < this.largeur)
+        {
+            if(m.matrice[h_cursor][w_cursor] != 0)
+            {
+                this.matrice[h_cursor][w_cursor] = m.matrice[h_cursor][w_cursor];
+            }
+            w_cursor ++;
+
+            if(w_cursor >= this.largeur)
+            {
+                diagonale ++;
+                w_cursor = diagonale + 1;
+                h_cursor ++;
+            }
+        }
+    }
+
+    
 }

@@ -12,35 +12,54 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 ************************************************************************************************************************************************/
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class MatriceDense implements Matrice
+public class MatriceDense extends Matrice
 {
-    int max_hauteur;
-    int max_largeur;
-    ArrayList<ArrayList<Integer>> matrice;
+    ArrayList<ArrayList<Integer>> matrice_dense_liste;
+    int matrice_dense_tab[][];
+
+   /*************************************************
+     * 
+     *              Constructeurs
+     * 
+     *************************************************/
 
     public MatriceDense(int taille)
     {
-        this.max_hauteur = taille;
-        this.max_largeur = taille;
-        matrice = new ArrayList<ArrayList<Integer>>();
+        super(taille);
+        matrice_dense_liste = new ArrayList<ArrayList<Integer>>();
         initMatrice();
+
+        arrayListToArray();
+        arrayListToArrayDense();
     }
 
-    public MatriceDense(Matrice matrice)
+    public MatriceDense(Matrice m)
     {
-        
+        super(m);
+        matrice_dense_liste = new ArrayList<ArrayList<Integer>>();
+        initMatrice(m);
+
+        arrayListToArray();
+        arrayListToArrayDense();
     }
 
+    /*************************************************
+     * 
+     *              Methodes
+     * 
+     *************************************************/
+
+    @Override
     public void modifierValeur(int x, int y, int valeur)
     {
-        if((x >= 0 && x < this.max_hauteur) && (y >= 0 && y < this.max_largeur))
+        System.out.println("GO");
+        if((x >= 0 && x < this.hauteur) && (y >= 0 && y < this.largeur))
         {
             int index_doublon = existeDeja(x, y);
             if(index_doublon != -1)
             {
-                matrice.get(index_doublon).set(2, valeur);
+                matrice_dense_liste.get(index_doublon).set(2, valeur);
             }
             else
             {
@@ -48,51 +67,66 @@ public class MatriceDense implements Matrice
                 ligne.add(x);
                 ligne.add(y);
                 ligne.add(valeur);
-                matrice.add(ligne);
+                matrice_dense_liste.add(ligne);
             }            
         }
     }
 
-    /* existeDeja : 
-     */
     private int existeDeja(int x, int y)
     {
-        for(ArrayList<Integer> ligne : matrice)
+        for(ArrayList<Integer> ligne : matrice_dense_liste)
         {
             if(ligne.get(0) == x && ligne.get(1) == y)
             {
-                return matrice.indexOf(ligne);
+                return matrice_dense_liste.indexOf(ligne);
             }
         }
         return -1;
     }
 
-    public void initMatrice()
+
+    public void afficherMatriceListe()
     {
-        System.out.println("Veuillez indiquer les cases non nulles de la matrice sous la forme suivante : x(hauteur) y(largeur) valeur");
-        System.out.println("Exemple :\n0 0 5");
-        System.out.println("Attention : une case deja enregistree sera reecrite.");
-
-        Scanner in = new Scanner(System.in);
-        int fin = 1;
-        while(fin != 0)
-        {
-            System.out.println("Nouvelle valeur : ");
-            modifierValeur(in.nextInt(), in.nextInt(), in.nextInt());
-
-            System.out.println("Continuer ?");
-            System.out.println("0 : non");
-            System.out.println("1 : oui");
-            fin = in.nextInt();
-        }
-        System.out.println("Fin de l'entree des donnees.\n");
-        in.close();
+        System.out.println(this.getClass() + " (liste) :");
+        System.out.println(matrice_dense_liste.toString());
     }
 
-    public void afficherMatrice()
+    private void arrayListToArray()
     {
-        System.out.println("Matrice dense :");
-        System.out.println(matrice.toString());
+        for (ArrayList<Integer> ligne : matrice_dense_liste)
+        {
+            matrice[ligne.get(0)][ligne.get(1)] = ligne.get(2);
+        }
+    }
+
+    private void arrayListToArrayDense()
+    {
+        matrice_dense_tab = new int[this.matrice_dense_liste.size()][3];
+        int cursor = 0;
+        for(ArrayList<Integer> ligne : this.matrice_dense_liste)
+        {
+            matrice_dense_tab[cursor][0] = ligne.get(0);
+            System.out.println(cursor + " " + 0 + " " + matrice_dense_tab[cursor][0]);
+            matrice_dense_tab[cursor][1] = ligne.get(1);
+            System.out.println(cursor + " " + 1 + " " + matrice_dense_tab[cursor][1]);
+            matrice_dense_tab[cursor][2] = ligne.get(2);
+            System.out.println(cursor + " " + 2 + " " + matrice_dense_tab[cursor][2]);
+            cursor ++;
+        }
+    }
+
+    public void afficherMatriceDense()
+    {
+        System.out.println(this.getClass() + " (dense) :");
+        for(int i = 0; i < matrice_dense_tab.length; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                System.out.print(this.matrice_dense_tab[i][j] + " | ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
     
 }
