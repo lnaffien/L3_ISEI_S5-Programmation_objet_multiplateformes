@@ -90,7 +90,6 @@ public abstract class Matrice
         if((x >= 0 && x < this.hauteur) && (y >= 0 && y < this.largeur))
         {
             this.matrice[x][y] = valeur;
-            System.out.println("Valeur modifiee.\n");
         }
         else
         {
@@ -135,7 +134,7 @@ public abstract class Matrice
             {
                 if(m.matrice[i][j] != 0)
                 {
-                    this.matrice[i][j] = m.matrice[i][j];
+                    modifierValeur(i, j, m.matrice[i][j]);
                 }
             }
         }

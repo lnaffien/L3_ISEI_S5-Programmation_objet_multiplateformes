@@ -31,8 +31,8 @@ public class MatriceDense extends Matrice
         matrice_dense_liste = new ArrayList<ArrayList<Integer>>();
         initMatrice();
 
-        arrayListToArray();
-        arrayListToArrayDense();
+        arrayListToArrayFormeLineaire();
+        arrayListToArrayFormeDense();
     }
 
     /**
@@ -44,9 +44,7 @@ public class MatriceDense extends Matrice
         super(m);
         matrice_dense_liste = new ArrayList<ArrayList<Integer>>();
         initMatrice(m);
-
-        arrayListToArray();
-        arrayListToArrayDense();
+        arrayListToArrayFormeDense();
     }
 
     /*************************************************
@@ -54,18 +52,16 @@ public class MatriceDense extends Matrice
      *              Methodes
      * 
      *************************************************/
-    
+
     @Override
     public void modifierValeur(int x, int y, int valeur)
     {
-        System.out.println("GO");
         if((x >= 0 && x < this.hauteur) && (y >= 0 && y < this.largeur))
         {
             int index_doublon = existeDeja(x, y);
             if(index_doublon != -1)
             {
                 matrice_dense_liste.get(index_doublon).set(2, valeur);
-                System.out.println("Valeur modifiee.\n");
             }
             else
             {
@@ -74,7 +70,6 @@ public class MatriceDense extends Matrice
                 ligne.add(y);
                 ligne.add(valeur);
                 matrice_dense_liste.add(ligne);
-                System.out.println("Valeur ecrasee.\n");
             }            
         }
         else
@@ -99,16 +94,9 @@ public class MatriceDense extends Matrice
             }
         }
         return -1;
-    }
+    }    
 
-
-    public void afficherMatriceListe()
-    {
-        System.out.println(this.getClass() + " (liste) :");
-        System.out.println(matrice_dense_liste.toString());
-    }
-
-    public void arrayListToArray()
+    public void arrayListToArrayFormeLineaire()
     {
         for (ArrayList<Integer> ligne : matrice_dense_liste)
         {
@@ -116,20 +104,23 @@ public class MatriceDense extends Matrice
         }
     }
 
-    public void arrayListToArrayDense()
+    public void arrayListToArrayFormeDense()
     {
         matrice_dense_tab = new int[this.matrice_dense_liste.size()][3];
         int cursor = 0;
         for(ArrayList<Integer> ligne : this.matrice_dense_liste)
         {
             matrice_dense_tab[cursor][0] = ligne.get(0);
-            System.out.println(cursor + " " + 0 + " " + matrice_dense_tab[cursor][0]);
             matrice_dense_tab[cursor][1] = ligne.get(1);
-            System.out.println(cursor + " " + 1 + " " + matrice_dense_tab[cursor][1]);
             matrice_dense_tab[cursor][2] = ligne.get(2);
-            System.out.println(cursor + " " + 2 + " " + matrice_dense_tab[cursor][2]);
             cursor ++;
         }
+    }
+
+    public void afficherMatriceListe()
+    {
+        System.out.println(this.getClass() + " (liste) :");
+        System.out.println(matrice_dense_liste.toString());
     }
 
     public void afficherMatriceDense()
