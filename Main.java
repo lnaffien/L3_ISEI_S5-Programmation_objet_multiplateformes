@@ -18,8 +18,11 @@ public class Main
     
     public static void main(String arg[])
     {
-        // Declaration des variables locales.       
-        Matrice matrice;        
+        // Declaration des variables locales.
+        Matrice matrice;
+        MatriceLineaire ml;
+        MatriceCreuse mc;
+        MatriceDense md;     
         int taille;
         int type = 0;
         Scanner in = new Scanner(System.in);
@@ -50,35 +53,48 @@ public class Main
         {
             // Matrice lineaire
             case 1 : 
-                matrice = new MatriceLineaire(taille);
+                ml = new MatriceLineaire(taille);
+                matrice = ml;
 
-                (new MatriceCreuse(matrice)).afficherMatrice();
+                mc = new MatriceCreuse(matrice);
+                mc.afficherMatrice();
 
-                MatriceDense md1 = new MatriceDense(matrice);
-                md1.afficherMatrice();
-                md1.afficherMatriceDense();
+                md = new MatriceDense(matrice);
+                md.afficherMatrice();
+                md.afficherMatriceDense();
+
                 break;
+
             // Matrice creuse
             case 2 :
-                matrice = new MatriceCreuse(taille);
-                ((MatriceCreuse)matrice).afficherMatrice();
+                mc = new MatriceCreuse(taille);
+                mc.afficherMatrice();                
+                matrice = mc;
 
-                (new MatriceLineaire(matrice)).afficherMatrice();;
+                ml = new MatriceLineaire(matrice);
+                ml.afficherMatrice();
 
-                MatriceDense md2 = new MatriceDense(matrice);
-                md2.afficherMatrice();
-                md2.afficherMatriceDense();
+                md = new MatriceDense(matrice);
+                md.afficherMatrice();
+                md.afficherMatriceDense();
+
                 break;
+
             // Matrice dense
             case 3 :
-                matrice = new MatriceDense(taille);
-                ((MatriceDense)matrice).afficherMatrice();
-                ((MatriceDense)matrice).afficherMatriceDense();
+                md = new MatriceDense(taille);
+                md.afficherMatrice();
+                md.afficherMatriceDense();
+                matrice = md;
                 
-                (new MatriceLineaire(matrice)).afficherMatrice();;
+                ml = new MatriceLineaire(matrice);
+                ml.afficherMatrice();
 
-                (new MatriceCreuse(matrice)).afficherMatrice();;
+                mc = new MatriceCreuse(matrice);
+                mc.afficherMatrice();
+
                 break;
+
             // Erreur
             default : 
                 in.close();
@@ -91,6 +107,32 @@ public class Main
         /******************
          *    Calculs     *
          ******************/
+
+        // Addition
+        System.out.println("MatriceLineaire + MatriceCreuse = ");
+        Matrice m_addition_lc = ml.additionnerMatrice(mc);
+        m_addition_lc.afficherMatrice();
+
+        System.out.println("MatriceLineaire + MatriceDense = ");
+        Matrice m_addition_ld = ml.additionnerMatrice(md);
+        m_addition_ld.afficherMatrice();
+
+        System.out.println("MatriceDense + MatriceCreuse = ");
+        Matrice m_addition_dc = md.additionnerMatrice(mc);
+        m_addition_dc.afficherMatrice();
+
+        // Multiplication
+        System.out.println("MatriceLineaire * MatriceCreuse = ");
+        Matrice m_multiplication_lc = ml.multiplierMatrice(mc);
+        m_multiplication_lc.afficherMatrice();
+
+        System.out.println("MatriceLineaire * MatriceDense = ");
+        Matrice m_multiplication_ld = ml.multiplierMatrice(md);
+        m_multiplication_ld.afficherMatrice();
+
+        System.out.println("MatriceDense * MatriceCreuse = ");
+        Matrice m_multiplication_dc = md.multiplierMatrice(mc);
+        m_multiplication_dc.afficherMatrice();
        
     }
 }

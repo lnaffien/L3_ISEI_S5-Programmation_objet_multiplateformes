@@ -125,7 +125,7 @@ public class MatriceLineaire extends Matrice
         int l_curseur = 1;  // Curseur pour la largeur
         int diagonale = 0;  // Curseur pour la diagonale
 
-        System.out.println("Initialisation de la partie inferieure.");
+        System.out.println("Initialisation de la partie superieure.");
 
         // Tant que l'index actuel ne depasse pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
         while(h_curseur < this.hauteur && l_curseur < this.largeur)

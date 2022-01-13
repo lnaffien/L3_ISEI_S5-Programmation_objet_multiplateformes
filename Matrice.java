@@ -143,7 +143,7 @@ public abstract class Matrice
     
     /** 
      * Initialisation de la matrice a partir d'une autre.
-     * @param m matrice initiale.
+     * @param m matrice initiale
      */
     protected void initMatrice(Matrice m)
     {
@@ -158,6 +158,72 @@ public abstract class Matrice
                 }
             }
         }
+    }
+
+    /*************************************************
+     *          Calculs matriciels
+     *************************************************/
+
+    /**
+     * Additionne la matrice actuelle et celle donnee en parametres.
+     * @param m matrice a additionner
+     * @return matrice resultat de l'addition
+     */
+    public MatriceCreuse additionnerMatrice(Matrice m)
+    {
+        // Verification que les 2 matrices soient bien additionnables.
+        if(this.largeur != m.largeur || this.hauteur != m.hauteur)
+        {
+            throw new ArithmeticException("Les 2 matrices a additionner sont de tailles differentes.");
+        }
+
+        // Declaration d'une matrice resultat.
+        MatriceCreuse matrice_resultat = new MatriceCreuse(m);
+
+        // Stockage du resultat dans la matrice resultat.
+        for(int i = 0; i < this.hauteur; i ++)
+        {
+            for(int j = 0; j < this.largeur; j++)
+            {
+                matrice_resultat.matrice[i][j] += this.matrice[i][j];
+            }
+        }
+        return matrice_resultat;
+    }
+
+    /**
+     * Multiplie la matrice actuelle par celle donnee en parametres.
+     * @param m matrice multiplicative
+     * @return matrice resultat de la multiplication
+     */
+    public MatriceCreuse multiplierMatrice(Matrice m)
+    {
+        // Verification que les 2 matrices peuvent bien être multipliées.
+        if(this.largeur != m.hauteur || this.hauteur != m.largeur)
+        {
+            throw new ArithmeticException("Les 2 matrices a multiplier n'ont pas des tailles compatibles.");
+        }
+
+        // Declaration d'une matrice resultat.
+        MatriceCreuse matrice_resultat = new MatriceCreuse(m);
+        int somme;
+
+        // Stockage du resultat dans la matrice resultat.
+        for(int i = 0; i < this.hauteur; i++)
+        {
+            for(int j = 0; j < m.largeur; j++)
+            {                
+                somme = 0;
+
+                for(int k = 0; k < this.largeur; k ++)
+                {
+                   somme += this.matrice[i][k] * m.matrice[k][j];
+                }
+                matrice_resultat.modifierValeur(i, j, somme);
+            }            
+        }
+
+        return matrice_resultat;
     }
     
 

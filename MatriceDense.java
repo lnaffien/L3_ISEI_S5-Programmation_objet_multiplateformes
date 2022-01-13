@@ -58,7 +58,8 @@ public class MatriceDense extends Matrice
         matrice_dense_liste = new ArrayList<ArrayList<Integer>>();
         initMatrice(m);
 
-        // Initialisation d'un tableau 2D contenant la matrice sous sa forme dense.
+        // Initialisation de tableaux 2D contenant la matrice sous differentes formes : lineaire et dense.
+        arrayListToArrayFormeLineaire();
         arrayListToArrayFormeDense();
     }
 
