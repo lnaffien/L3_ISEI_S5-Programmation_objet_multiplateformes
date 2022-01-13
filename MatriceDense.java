@@ -140,7 +140,7 @@ public class MatriceDense extends Matrice
     /**
      * Initialise un tableau 2D de int contenant la matrice dense sous sa forme lineaire a partir de l'ArrayList.
      */
-    public void arrayListToArrayFormeLineaire()
+    private void arrayListToArrayFormeLineaire()
     {
         for (ArrayList<Integer> ligne : matrice_dense_liste)
         {
@@ -151,7 +151,7 @@ public class MatriceDense extends Matrice
     /**
      * Initialise un tableau 2D de int contenant la matrice dense sous sa forme dense a partir de l'ArrayList.
      */
-    public void arrayListToArrayFormeDense()
+    private void arrayListToArrayFormeDense()
     {
         matrice_dense_tab = new int[this.matrice_dense_liste.size()][3];
         int cursor = 0;
