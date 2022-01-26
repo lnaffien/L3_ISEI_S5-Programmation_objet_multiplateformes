@@ -11,6 +11,8 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 
 ************************************************************************************************************************************************/
 
+package v1;
+
 import java.util.ArrayList;
 
 public class MatriceDense extends Matrice

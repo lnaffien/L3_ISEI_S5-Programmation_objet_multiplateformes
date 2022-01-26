@@ -10,6 +10,7 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 
 
 ************************************************************************************************************************************************/
+package v1;
 
 public class MatriceLineaire extends Matrice
 {
