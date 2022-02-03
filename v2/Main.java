@@ -6,8 +6,11 @@
  * Notes : La matrice que j'ai nommee dense est en réalité une matrice creuse. Mais du coup c'est quoi une matrice dense ?
  */
 
-package v2;
-
 public class Main {
     
+
+    public static void main(String arg[])
+    {
+          
+    }
 }
