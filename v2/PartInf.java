@@ -33,7 +33,7 @@ public class PartInf
      */
     public int getValueFromIndex(int x, int y)
     {
-        if(x < 0 || x >= size - 1 || y <= 0 || y >= size)
+        if(x <= 0 || x >= size || y < 0 || y >= size - 1)
         {
             throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + x + ", " + y);
         }
@@ -48,7 +48,7 @@ public class PartInf
      */
     public void addValue(int x, int y, int valeur)
     {
-        if(x < 0 || x >= size - 1 || y <= 0 || y >= size || x > y)
+        if(x <= 0 || x >= size || y < 0 || y >= size - 1 || x < y)
         {
             throw new ArithmeticException("PartInf : addValue : index invalide : " + x + ", " + y);
         }
@@ -85,14 +85,14 @@ public class PartInf
      */
     public void display()
     {
-        int hauteur = 0;
+        int hauteur = 1;
         int i = 0;
         for (int value : values_array)
         {
             System.out.print(value + " ; ");
             i++;
 
-            if(i + hauteur >= size - 1)
+            if(i >= hauteur)
             {
                 System.out.println();
                 hauteur++;
