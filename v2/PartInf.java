@@ -1,4 +1,4 @@
-public class PartSup
+public class PartInf
 {
     private int values_array[]; // Tableau contenant les valeurs de la partie superieure de la matrice de facon lineaire.
     int size;                   // Taille de la matrice carree.
@@ -13,7 +13,7 @@ public class PartSup
      * Constructeur.
      * @param size taille de la matrice caree
      */
-    public PartSup(int size)
+    public PartInf(int size)
     {
         this.size = size;
         values_array = new int[((size * size) - size) / 2];
@@ -72,16 +72,16 @@ public class PartSup
     }
 
     /**
-     * Retourne les valeurs de la partie superieure de la matrice.
-     * @return valeurs de la partie superieure de la matrice
+     * Retourne les valeurs de la partie inferieure de la matrice.
+     * @return valeurs de la partie inferieure de la matrice
      */
-    public int[] getPartSup()
+    public int[] getPartInf()
     {
         return this.values_array;
     }
 
     /**
-     * Affiche la partie superieure de la matrice.
+     * Affiche la partie inferieure de la matrice.
      */
     public void display()
     {

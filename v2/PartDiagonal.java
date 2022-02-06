@@ -1,13 +1,34 @@
 public class PartDiagonal
 {
-    private int values_array[];
-    int size;
+    private int values_array[]; // Tableau contenant les valeurs de la diagonale de la matrice de facon lineaire.
+    int size;                   // Taille de la matrice carree.
 
+    /*************************************************
+     * 
+     *              Constructeurs
+     * 
+     *************************************************/
+
+    /**
+     * Constructeur.
+     * @param size taille de la matrice caree
+     */
     public PartDiagonal(int size)
     {
         values_array = new int[size];
     }
 
+     /*************************************************
+     * 
+     *              Methodes
+     * 
+     *************************************************/
+
+    /**
+     * Retourne la valeur stockee a une position donnee dans la matrice.
+     * @param index position dans la hauteur et dans la largeur de la matrice
+     * @return valeur stockee a la position donnee
+     */
     public int getValueFromIndex(int index)
     {
         if(index >= size || index < 0)
@@ -17,21 +38,33 @@ public class PartDiagonal
         return values_array[index];
     }
 
-    public void addValue(int value, int index)
+    /**
+     * Modifie une valeur a une position donnee dans la matrice.
+     * @param index position dans la hauteur et dans la largeur de la matrice
+     * @param valeur nouvelle valeur a ajouter
+     */
+    public void addValue(int index, int valeur)
     {
         if(index >= size || index < 0)
         {
             throw new ArithmeticException("PartDiagonal : addValue : index invalide");
         }
 
-        values_array[index] = value;
+        values_array[index] = valeur;
     }
-    
+
+    /**
+     * Retourne les valeurs de la diagonale de la matrice.
+     * @return valeurs de la diagonale de la matrice
+     */
     public int[] getDiagonal()
     {
         return this.values_array;
     }
 
+    /**
+     * Affiche la diagonale de la matrice.
+     */
     public void display()
     {
         for (int value : values_array)
