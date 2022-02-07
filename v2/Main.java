@@ -11,10 +11,6 @@ public class Main {
 
     public static void main(String arg[])
     {
-          PartInf pi = new PartInf(4);
-          pi.addValue(1, 0, 5);
-          pi.addValue(3, 1, 2);
-          pi.addValue(3, 2, 9);
-          pi.display();
+        
     }
 }

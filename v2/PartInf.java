@@ -37,7 +37,7 @@ public class PartInf
         {
             throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + x + ", " + y);
         }
-        return values_array[x * size + y - exp(x) - x - 1];
+        return values_array[y + exp(x - 1)];
     }
 
     /**
@@ -53,7 +53,7 @@ public class PartInf
             throw new ArithmeticException("PartInf : addValue : index invalide : " + x + ", " + y);
         }
 
-        values_array[x * size + y - exp(x) - x - 1] = valeur;
+        values_array[y + exp(x - 1)] = valeur;
     }
 
     /**
