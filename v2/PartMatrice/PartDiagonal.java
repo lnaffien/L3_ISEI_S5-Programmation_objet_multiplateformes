@@ -1,7 +1,9 @@
+package PartMatrice;
+
 public class PartDiagonal
 {
     private int values_array[]; // Tableau contenant les valeurs de la diagonale de la matrice de facon lineaire.
-    int size;                   // Taille de la matrice carree.
+    int taille;                   // Taille de la matrice carree.
 
     /*************************************************
      * 
@@ -13,9 +15,10 @@ public class PartDiagonal
      * Constructeur.
      * @param size taille de la matrice caree
      */
-    public PartDiagonal(int size)
+    public PartDiagonal(int taille)
     {
-        values_array = new int[size];
+        this.taille = taille;
+        values_array = new int[taille];
     }
 
      /*************************************************
@@ -31,7 +34,8 @@ public class PartDiagonal
      */
     public int getValueFromIndex(int index)
     {
-        if(index >= size || index < 0)
+        // Verification de la validite des index donnes.
+        if(index >= taille || index < 0)
         {
             throw new ArithmeticException("PartDiagonal : getValueFromIndex : index invalide.");
         }
@@ -45,11 +49,10 @@ public class PartDiagonal
      */
     public void addValue(int index, int valeur)
     {
-        if(index >= size || index < 0)
+        if(index >= taille || index < 0)
         {
             throw new ArithmeticException("PartDiagonal : addValue : index invalide");
         }
-
         values_array[index] = valeur;
     }
 

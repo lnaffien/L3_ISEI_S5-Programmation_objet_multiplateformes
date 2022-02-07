@@ -1,3 +1,5 @@
+package PartMatrice;
+
 public class PartSup
 {
     private int values_array[]; // Tableau contenant les valeurs de la partie superieure de la matrice de facon lineaire.
@@ -33,6 +35,7 @@ public class PartSup
      */
     public int getValueFromIndex(int x, int y)
     {
+        // Verification de la validite des index donnes.
         if(x < 0 || x >= size - 1 || y <= 0 || y >= size)
         {
             throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + x + ", " + y);
@@ -50,7 +53,7 @@ public class PartSup
     {
         if(x < 0 || x >= size - 1 || y <= 0 || y >= size || x > y)
         {
-            throw new ArithmeticException("PartInf : addValue : index invalide : " + x + ", " + y);
+            throw new ArithmeticException("PartSup : addValue : index invalide : " + x + ", " + y);
         }
 
         values_array[x * size + y - exp(x) - x - 1] = valeur;

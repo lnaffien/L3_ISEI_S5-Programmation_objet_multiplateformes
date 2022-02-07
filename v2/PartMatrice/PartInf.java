@@ -1,3 +1,5 @@
+package PartMatrice;
+
 public class PartInf
 {
     private int values_array[]; // Tableau contenant les valeurs de la partie superieure de la matrice de facon lineaire.
@@ -33,6 +35,7 @@ public class PartInf
      */
     public int getValueFromIndex(int x, int y)
     {
+        // Verification de la validite des index donnes.
         if(x <= 0 || x >= size || y < 0 || y >= size - 1)
         {
             throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + x + ", " + y);
