@@ -30,7 +30,7 @@ public class PartInfCreuse extends PartCreuse
     public int getValueFromIndex(int hauteur, int largeur)
     {
         // Verification de la validite des index donnes.
-        if(hauteur >= taille || hauteur < 0 || largeur >= taille || largeur < 0)
+        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
         {
             throw new ArithmeticException("PartInfCreuse : getValueFromIndex : index invalide.");
         }
@@ -60,9 +60,9 @@ public class PartInfCreuse extends PartCreuse
     public void ajouterValeur(int hauteur, int largeur, int valeur)
     {
         // Verification de la validite de l'index
-        if(hauteur >= taille || hauteur < 0 || largeur >= taille || largeur < 0)
+        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
         {
-            throw new ArithmeticException("PartInfCreuse : addValue : index invalide");
+            throw new ArithmeticException("PartInfCreuse : addValue : coordonnees invalides");
         }        
         
         int existe = existeDeja(hauteur, largeur);
@@ -98,6 +98,10 @@ public class PartInfCreuse extends PartCreuse
      */
     private int existeDeja(int hauteur, int largeur)
     {
+        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
+        {
+            throw new ArithmeticException("PartInfCreuse : existeDeja : coordonnees invalides");
+        }
         int offset = getOffset(hauteur, largeur);
         for(int i = 0; i < values_array.length; i++)
         {
@@ -116,6 +120,11 @@ public class PartInfCreuse extends PartCreuse
     // TODO : a tester
     public void supprimerValeur(int hauteur, int largeur)
     {
+        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
+        {
+            throw new ArithmeticException("PartInfCreuse : supprimerValeur : coordonnees invalides");
+        }
+
         int offset = getOffset(hauteur, largeur);
         int temp_array[][] = values_array;
         values_array = new int[temp_array.length - 1][VALUES_ARRAY_NBR_COLONNES];        
