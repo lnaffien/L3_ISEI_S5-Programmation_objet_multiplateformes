@@ -1,7 +1,9 @@
 package PartMatrice;
-public class PartInfCreuse extends PartCreuse
+
+public class PartSupCreuse extends PartCreuse
 {
-    /*************************************************
+
+   /*************************************************
      * 
      *              Constructeurs
      * 
@@ -11,7 +13,7 @@ public class PartInfCreuse extends PartCreuse
      * Constructeur.
      * @param taille taille de la matrice caree
      */
-    public PartInfCreuse(int taille)
+    public PartSupCreuse(int taille)
     {
         super(taille);
     }
@@ -30,9 +32,9 @@ public class PartInfCreuse extends PartCreuse
     public int getValueFromIndex(int hauteur, int largeur)
     {
         // Verification de la validite des index donnes.
-        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
+        if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
         {
-            throw new ArithmeticException("PartInfCreuse : getValueFromIndex : index invalide.");
+            throw new ArithmeticException("PartSupCreuse : getValueFromIndex : index invalide.");
         }
 
         // Calcul de l'offset de l'index donne.
@@ -60,9 +62,9 @@ public class PartInfCreuse extends PartCreuse
     public void ajouterValeur(int hauteur, int largeur, int valeur)
     {
         // Verification de la validite de l'index
-        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
+        if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
         {
-            throw new ArithmeticException("PartInfCreuse : addValue : coordonnees invalides");
+            throw new ArithmeticException("PartSupCreuse : addValue : coordonnees invalides");
         }        
         
         int existe = existeDeja(hauteur, largeur);
@@ -98,9 +100,9 @@ public class PartInfCreuse extends PartCreuse
      */
     private int existeDeja(int hauteur, int largeur)
     {
-        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
+        if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
         {
-            throw new ArithmeticException("PartInfCreuse : existeDeja : coordonnees invalides");
+            throw new ArithmeticException("PartSupCreuse : existeDeja : coordonnees invalides");
         }
         int offset = getOffset(hauteur, largeur);
         for(int i = 0; i < values_array.length; i++)
@@ -119,9 +121,9 @@ public class PartInfCreuse extends PartCreuse
      */
     public void supprimerValeur(int hauteur, int largeur)
     {
-        if(hauteur >= taille || hauteur <= 0 || largeur >= taille - 1 || largeur < 0 || hauteur < largeur)
+        if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
         {
-            throw new ArithmeticException("PartInfCreuse : supprimerValeur : coordonnees invalides");
+            throw new ArithmeticException("PartSupCreuse : supprimerValeur : coordonnees invalides");
         }
 
         int offset = getOffset(hauteur, largeur);
