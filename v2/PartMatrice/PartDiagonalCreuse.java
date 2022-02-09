@@ -1,14 +1,8 @@
 package PartMatrice;
 
 
-public class PartDiagonalCreuse
-{
-    private int values_array[][];               // Tableau 2D contenant les valeurs de la diagonale de la matrice de facon dense.
-    final int VALUES_ARRAY_NBR_COLONNES = 2;    // Nombre de colonnes du tableau de donnees.
-    final int VALUES_ARRAY_OFFSET = 0;           // Position de l'offset dans le tableau.
-    final int VALUES_ARRAY_VALUE = 1;           // Position de la valeur dans le tableau.
-
-    int taille;                                 // Taille de la matrice carree.
+public class PartDiagonalCreuse extends PartCreuse
+{   
 
     /*************************************************
      * 
@@ -18,12 +12,11 @@ public class PartDiagonalCreuse
 
     /**
      * Constructeur.
-     * @param size taille de la matrice caree
+     * @param taille taille de la matrice caree
      */
     public PartDiagonalCreuse(int taille)
     {
-        this.taille = taille;
-        this.values_array = new int[0][VALUES_ARRAY_NBR_COLONNES];
+        super(taille);
     }
 
      /*************************************************
@@ -96,17 +89,14 @@ public class PartDiagonalCreuse
         }
     }
 
-    public void copyArray(int[][] array_initial, int[][] array_final)
+    public int getOffset(int index)
     {
-        int taille_min = array_initial.length < array_final.length ? array_initial.length : array_final.length;
+        return index * taille + index;
+    }
 
-        for(int i = 0; i < taille_min; i++)
-        {
-            for(int j = 0; j < VALUES_ARRAY_NBR_COLONNES; j++)
-            {
-                array_final[i][j] = array_initial[i][j];
-            }
-        }
+    public int getIndex(int offset)
+    {
+        return offset / (taille + 1);
     }
 
     /**
@@ -149,35 +139,7 @@ public class PartDiagonalCreuse
         }
     }
 
-    public int getOffset(int index)
-    {
-        return index * taille + index;
-    }
 
-    public int getIndex(int offset)
-    {
-        return offset / (taille + 1);
-    }
-
-    /**
-     * Retourne les valeurs de la diagonale de la matrice.
-     * @return valeurs de la diagonale de la matrice
-     */
-    public int[][] getDiagonal()
-    {
-        return this.values_array;
-    }
-
-    /**
-     * Affiche la diagonale de la matrice.
-     */
-    public void display()
-    {
-        for(int i = 0; i < values_array.length; i++)
-        {
-            System.out.println("[" + values_array[i][VALUES_ARRAY_OFFSET] + ", " + values_array[i][VALUES_ARRAY_VALUE] + "] ");
-        }
-    }
     
 }
 
