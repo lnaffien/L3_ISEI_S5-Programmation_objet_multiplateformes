@@ -13,7 +13,7 @@ public class PartDiagonal
 
     /**
      * Constructeur.
-     * @param size taille de la matrice caree
+     * @param taille taille de la matrice caree
      */
     public PartDiagonal(int taille)
     {
