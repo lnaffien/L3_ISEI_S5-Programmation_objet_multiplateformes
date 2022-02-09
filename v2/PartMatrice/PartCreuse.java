@@ -70,4 +70,39 @@ public class PartCreuse
             System.out.println("[" + values_array[i][VALUES_ARRAY_OFFSET] + ", " + values_array[i][VALUES_ARRAY_VALUE] + "] ");
         }
     }
+
+    public int getOffset(int hauteur, int largeur)
+    {
+        return hauteur * taille + largeur;
+    }
+
+    public int getHauteur(int offset)
+    {
+        return offset / taille; //(ou offset / (taille + 1) ?)
+    }
+
+    public int getLargeur(int offset)
+    {
+        return offset % taille;
+    }
+
+    /*
+ * offset = hauteur * taille + largeur
+ *      offset - largeur = hauteur * taille *      
+ * hauteur = (offset - largeur) / taille
+ *      - largeur = hauteur * taille - offset
+ * largeur = - (hauteur * taille - offset)
+ * 
+ * hauteur / taille
+ * 
+ * offset = x * taille + x
+ * offset - x = x * taille
+ * (offset - x) / x = taille
+ * offset / x - x / x = taille
+ * offset / x - 1 = taille
+ * offset / x = taille + 1
+ * offset = (taille + 1) * x
+ * offset / (taille + 1) = x
+ */ 
+    
 }

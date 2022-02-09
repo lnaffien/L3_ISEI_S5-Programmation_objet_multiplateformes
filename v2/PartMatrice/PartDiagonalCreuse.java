@@ -38,7 +38,7 @@ public class PartDiagonalCreuse extends PartCreuse
             throw new ArithmeticException("PartDiagonal : getValueFromIndex : index invalide.");
         }
 
-        int offset = getOffset(index);
+        int offset = getOffset(index, index);
 
         for(int i = 0; i < values_array.length; i++)
         {
@@ -85,18 +85,8 @@ public class PartDiagonalCreuse extends PartCreuse
             values_array = new int[values_array.length + 1][VALUES_ARRAY_NBR_COLONNES];
             copyArray(temp_array, values_array);
             values_array[values_array.length - 1][VALUES_ARRAY_VALUE] = valeur;
-            values_array[values_array.length - 1][VALUES_ARRAY_OFFSET] = getOffset(index);
+            values_array[values_array.length - 1][VALUES_ARRAY_OFFSET] = getOffset(index, index);
         }
-    }
-
-    public int getOffset(int index)
-    {
-        return index * taille + index;
-    }
-
-    public int getIndex(int offset)
-    {
-        return offset / (taille + 1);
     }
 
     /**
@@ -108,7 +98,7 @@ public class PartDiagonalCreuse extends PartCreuse
     {
         for(int i = 0; i < values_array.length; i++)
         {
-            if(values_array[i][VALUES_ARRAY_OFFSET] == getOffset(index))
+            if(values_array[i][VALUES_ARRAY_OFFSET] == getOffset(index, index))
             {
                 return i;
             }
@@ -118,7 +108,7 @@ public class PartDiagonalCreuse extends PartCreuse
 
     public void supprimerValeur(int index)
     {
-        int offset = getOffset(index);
+        int offset = getOffset(index, index);
         int temp_array[][] = values_array;
         values_array = new int[temp_array.length - 1][VALUES_ARRAY_NBR_COLONNES];        
 
@@ -143,19 +133,4 @@ public class PartDiagonalCreuse extends PartCreuse
     
 }
 
-/*
- * offset = hauteur * taille + largeur
- *      offset - largeur = hauteur * taille *      
- * hauteur = (offset - largeur) / taille
- *      - largeur = hauteur * taille - offset
- * largeur = - (hauteur * taille - offset)
- * 
- * offset = x * taille + x
- * offset - x = x * taille
- * (offset - x) / x = taille
- * offset / x - x / x = taille
- * offset / x - 1 = taille
- * offset / x = taille + 1
- * offset = (taille + 1) * x
- * offset / (taille + 1) = x
- */ 
+
