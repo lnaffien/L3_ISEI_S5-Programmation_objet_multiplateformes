@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import Matrice.Matrice;
+import Matrice.MatriceCreuse;
+import Matrice.MatriceLineaire;
+
 /* A ajouter : 
  * - Calcul de la matrice transposée (= échange des indices (ex : 2 3 5 et 3 2 9. Il faut avoir 2 3 9 et 3 2 5.). Tres rapide pour la matrice creuse)
  * 
@@ -13,8 +17,7 @@ public class Main
         // Declaration des variables locales.
         Matrice matrice;
         MatriceLineaire ml;
-        // MatriceCreuse mc;
-        // MatriceDense md;     
+        MatriceCreuse mc;
         int taille;
         int type = 0;
         Scanner in = new Scanner(System.in);
@@ -37,7 +40,6 @@ public class Main
         System.out.println("Quel est son type initial ?");
         System.out.println("1 : matrice lineaire");
         System.out.println("2 : matrice creuse");
-        System.out.println("3 : matrice dense");
         type = in.nextInt();
 
         // Initialisation de la matrice en fonction des informations donnees.
@@ -47,46 +49,30 @@ public class Main
             case 1 : 
                 ml = new MatriceLineaire(taille);
                 matrice = ml;
+
+            //     mc = new MatriceCreuse(matrice);
+            //     mc.afficherMatrice();
+
+            //     md = new MatriceDense(matrice);
+            //     md.afficherMatrice();
+            //     md.afficherMatriceDense();
+
                 break;
 
-            //     mc = new MatriceCreuse(matrice);
-            //     mc.afficherMatrice();
+            // Matrice creuse
+            case 2 :
+                mc = new MatriceCreuse(taille);
+                mc.afficherMatrice();                
+                matrice = mc;
 
-            //     md = new MatriceDense(matrice);
-            //     md.afficherMatrice();
-            //     md.afficherMatriceDense();
+                ml = new MatriceLineaire(matrice);
+                ml.afficherMatrice();
 
-            //     break;
+                // md = new MatriceDense(matrice);
+                // md.afficherMatrice();
+                // md.afficherMatriceDense();
 
-            // // Matrice creuse
-            // case 2 :
-            //     mc = new MatriceCreuse(taille);
-            //     mc.afficherMatrice();                
-            //     matrice = mc;
-
-            //     ml = new MatriceLineaire(matrice);
-            //     ml.afficherMatrice();
-
-            //     md = new MatriceDense(matrice);
-            //     md.afficherMatrice();
-            //     md.afficherMatriceDense();
-
-            //     break;
-
-            // // Matrice dense
-            // case 3 :
-            //     md = new MatriceDense(taille);
-            //     md.afficherMatrice();
-            //     md.afficherMatriceDense();
-            //     matrice = md;
-                
-            //     ml = new MatriceLineaire(matrice);
-            //     ml.afficherMatrice();
-
-            //     mc = new MatriceCreuse(matrice);
-            //     mc.afficherMatrice();
-
-            //     break;
+                break;
 
             // Erreur
             default : 
@@ -95,7 +81,7 @@ public class Main
         }
         
         // Fermeture du Scanner afin d'eviter des fuites de memoire
-        // in.close();
+        in.close();
 
         
     }
