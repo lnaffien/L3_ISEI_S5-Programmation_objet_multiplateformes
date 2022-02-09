@@ -117,7 +117,8 @@ public class PartSupCreuse extends PartCreuse
 
     /**
      * Supprime la valeur aux coordonnees donnees.
-     * @param index index dont on veut supprimer la valeur
+     * @param hauteur coordonnee de la hauteur dont on veut supprimer la valeur
+     * @param largeur coordonnee de la largeur dont on veut supprimer la valeur
      */
     public void supprimerValeur(int hauteur, int largeur)
     {

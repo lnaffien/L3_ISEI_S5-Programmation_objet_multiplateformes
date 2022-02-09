@@ -2,7 +2,7 @@ package PartMatrice;
 
 public class PartManager
 {
-    int size;               // Taille de la matrice carree.
+    int taille;             // Taille de la matrice carree.
     
     PartDiagonal partDiag;  // Diagonale de la matrice.
     PartSup partSup;        // Partie superieure de la matrice.
