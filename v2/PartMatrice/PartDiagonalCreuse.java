@@ -1,5 +1,6 @@
 package PartMatrice;
 
+
 public class PartDiagonalCreuse
 {
     private int values_array[][];               // Tableau 2D contenant les valeurs de la diagonale de la matrice de facon dense.
@@ -22,7 +23,7 @@ public class PartDiagonalCreuse
     public PartDiagonalCreuse(int taille)
     {
         this.taille = taille;
-        this.values_array = new int[0][0];
+        this.values_array = new int[0][VALUES_ARRAY_NBR_COLONNES];
     }
 
      /*************************************************
@@ -70,7 +71,6 @@ public class PartDiagonalCreuse
             throw new ArithmeticException("PartDiagonal : addValue : index invalide");
         }        
         
-        int temp_array[][] = values_array;        
         int existe = existeDeja(index);
 
         // Si une valeur a deja ete enregistree a l'index donne.
@@ -88,10 +88,24 @@ public class PartDiagonalCreuse
         // Ajout de la donnee si elle est differente de 0.
         else if(valeur != 0)
         {
+            int[][] temp_array = values_array;
             values_array = new int[values_array.length + 1][VALUES_ARRAY_NBR_COLONNES];
-            values_array = temp_array;
-            values_array[values_array.length - 1][VALUES_ARRAY_NBR_COLONNES] = valeur;
+            copyArray(temp_array, values_array);
+            values_array[values_array.length - 1][VALUES_ARRAY_VALUE] = valeur;
+            values_array[values_array.length - 1][VALUES_ARRAY_OFFSET] = getOffset(index);
+        }
+    }
 
+    public void copyArray(int[][] array_initial, int[][] array_final)
+    {
+        int taille_min = array_initial.length < array_final.length ? array_initial.length : array_final.length;
+
+        for(int i = 0; i < taille_min; i++)
+        {
+            for(int j = 0; j < VALUES_ARRAY_NBR_COLONNES; j++)
+            {
+                array_final[i][j] = array_initial[i][j];
+            }
         }
     }
 
@@ -159,9 +173,9 @@ public class PartDiagonalCreuse
      */
     public void display()
     {
-        for (int value[] : values_array)
+        for(int i = 0; i < values_array.length; i++)
         {
-            System.out.println(value);
+            System.out.println("[" + values_array[i][VALUES_ARRAY_OFFSET] + ", " + values_array[i][VALUES_ARRAY_VALUE] + "] ");
         }
     }
     
