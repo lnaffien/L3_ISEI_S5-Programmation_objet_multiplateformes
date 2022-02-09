@@ -3,7 +3,7 @@ package PartMatrice;
 public class PartInf
 {
     private int values_array[]; // Tableau contenant les valeurs de la partie superieure de la matrice de facon lineaire.
-    int size;                   // Taille de la matrice carree.
+    int taille;                   // Taille de la matrice carree.
 
     /*************************************************
      * 
@@ -13,12 +13,12 @@ public class PartInf
 
     /**
      * Constructeur.
-     * @param size taille de la matrice caree
+     * @param taille taille de la matrice caree
      */
-    public PartInf(int size)
+    public PartInf(int taille)
     {
-        this.size = size;
-        values_array = new int[((size * size) - size) / 2];
+        this.taille = taille;
+        values_array = new int[((taille * taille) - taille) / 2];
     }
 
     /*************************************************
@@ -29,34 +29,34 @@ public class PartInf
 
     /**
      * Retourne la valeur stockee a une position donnee dans la matrice.
-     * @param x position dans la hauteur de la matrice
-     * @param y position dans la largeur de la matrice
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
      * @return valeur stockee a la position donnee
      */
-    public int getValueFromIndex(int x, int y)
+    public int getValueFromIndex(int hauteur, int largeur)
     {
         // Verification de la validite des index donnes.
-        if(x <= 0 || x >= size || y < 0 || y >= size - 1)
+        if(hauteur <= 0 || hauteur >= taille || largeur < 0 || largeur >= taille - 1)
         {
-            throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + x + ", " + y);
+            throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + hauteur + ", " + largeur);
         }
-        return values_array[y + exp(x - 1)];
+        return values_array[largeur + exp(hauteur - 1)];
     }
 
     /**
      * Modifie une valeur a une position donnee dans la matrice.
-     * @param x position dans la hauteur de la matrice
-     * @param y position dans la largeur de la matrice
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
      * @param value nouvelle valeur a ajouter
      */
-    public void addValue(int x, int y, int valeur)
+    public void addValue(int hauteur, int largeur, int valeur)
     {
-        if(x <= 0 || x >= size || y < 0 || y >= size - 1 || x < y)
+        if(hauteur <= 0 || hauteur >= taille || largeur < 0 || largeur >= taille - 1 || hauteur < largeur)
         {
-            throw new ArithmeticException("PartInf : addValue : index invalide : " + x + ", " + y);
+            throw new ArithmeticException("PartInf : addValue : index invalide : " + hauteur + ", " + largeur);
         }
 
-        values_array[y + exp(x - 1)] = valeur;
+        values_array[largeur + exp(hauteur - 1)] = valeur;
     }
 
     /**

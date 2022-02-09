@@ -1,9 +1,6 @@
 package PartMatrice;
-
-
-public class PartDiagonalCreuse extends PartCreuse
-{   
-
+public class PartInfCreuse extends PartCreuse
+{
     /*************************************************
      * 
      *              Constructeurs
@@ -14,7 +11,7 @@ public class PartDiagonalCreuse extends PartCreuse
      * Constructeur.
      * @param taille taille de la matrice caree
      */
-    public PartDiagonalCreuse(int taille)
+    public PartInfCreuse(int taille)
     {
         super(taille);
     }
@@ -30,16 +27,16 @@ public class PartDiagonalCreuse extends PartCreuse
      * @param index position dans la hauteur et dans la largeur de la matrice
      * @return valeur stockee a la position donnee
      */
-    public int getValueFromIndex(int index)
+    public int getValueFromIndex(int hauteur, int largeur)
     {
         // Verification de la validite des index donnes.
-        if(index >= taille || index < 0)
+        if(hauteur >= taille || hauteur < 0 || largeur >= taille || largeur < 0)
         {
-            throw new ArithmeticException("PartDiagonalCreuse : getValueFromIndex : index invalide.");
+            throw new ArithmeticException("PartInfCreuse : getValueFromIndex : index invalide.");
         }
 
         // Calcul de l'offset de l'index donne.
-        int offset = getOffset(index, index);
+        int offset = getOffset(hauteur, largeur);
 
         // Recherche de l'index dans le tableau des donnees.
         for(int i = 0; i < values_array.length; i++)
@@ -56,25 +53,26 @@ public class PartDiagonalCreuse extends PartCreuse
 
     /**
      * Modifie une valeur a une position donnee dans la matrice.
-     * @param index position dans la hauteur et dans la largeur de la matrice
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
      * @param valeur nouvelle valeur a ajouter
      */
-    public void ajouterValeur(int index, int valeur)
+    public void ajouterValeur(int hauteur, int largeur, int valeur)
     {
         // Verification de la validite de l'index
-        if(index >= taille || index < 0)
+        if(hauteur >= taille || hauteur < 0 || largeur >= taille || largeur < 0)
         {
-            throw new ArithmeticException("PartDiagonalCreuse : addValue : index invalide");
+            throw new ArithmeticException("PartInfCreuse : addValue : index invalide");
         }        
         
-        int existe = existeDeja(index);
+        int existe = existeDeja(hauteur, largeur);
 
         // Si une valeur a deja ete enregistree a l'index donne.
         if(existe >= 0)
         {
             if(valeur == 0)
             {
-                supprimerValeur(index);
+                supprimerValeur(hauteur, largeur);
             }
             else
             {
@@ -88,20 +86,22 @@ public class PartDiagonalCreuse extends PartCreuse
             values_array = new int[values_array.length + 1][VALUES_ARRAY_NBR_COLONNES];
             copyArray(temp_array, values_array);
             values_array[values_array.length - 1][VALUES_ARRAY_VALUE] = valeur;
-            values_array[values_array.length - 1][VALUES_ARRAY_OFFSET] = getOffset(index, index);
+            values_array[values_array.length - 1][VALUES_ARRAY_OFFSET] = getOffset(hauteur, largeur);
         }
     }
 
     /**
      * Verifie qu'aucune valeur n'a deja ete enregistree a l'index de la matrice donne.
-     * @param index position dans la hauteur et dans la largeur de la matrice
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
      * @return -1 si aucune valeur n'a ete enregistree a ces index, index de ces donnees dans le tableau
      */
-    private int existeDeja(int index)
+    private int existeDeja(int hauteur, int largeur)
     {
+        int offset = getOffset(hauteur, largeur);
         for(int i = 0; i < values_array.length; i++)
         {
-            if(values_array[i][VALUES_ARRAY_OFFSET] == getOffset(index, index))
+            if(values_array[i][VALUES_ARRAY_OFFSET] == offset)
             {
                 return i;
             }
@@ -110,12 +110,13 @@ public class PartDiagonalCreuse extends PartCreuse
     }
 
     /**
-     * Supprime la valeur a un index donne.
+     * Supprime la valeur aux coordonnees donnees.
      * @param index index dont on veut supprimer la valeur
      */
-    public void supprimerValeur(int index)
+    // TODO : a tester
+    public void supprimerValeur(int hauteur, int largeur)
     {
-        int offset = getOffset(index, index);
+        int offset = getOffset(hauteur, largeur);
         int temp_array[][] = values_array;
         values_array = new int[temp_array.length - 1][VALUES_ARRAY_NBR_COLONNES];        
 
@@ -135,9 +136,5 @@ public class PartDiagonalCreuse extends PartCreuse
             }                    
         }
     }
-
-
     
 }
-
-
