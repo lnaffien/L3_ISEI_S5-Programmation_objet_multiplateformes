@@ -53,6 +53,7 @@ public class PartCreuse
 
     /**
      * Retourne les valeurs de la partie de la matrice.
+     * 
      * @return valeurs de la partie de la matrice
      */
     public int[][] getPart()
@@ -71,38 +72,50 @@ public class PartCreuse
         }
     }
 
+    /**
+     * Calcule l'offset en fonction des coordonnees donnees.
+     * 
+     * @param hauteur hauteur dont on veut calculer l'offset
+     * @param largeur largeur dont on veut claculer l'offset
+     * @return offset correspandant aux coordonnees donnees
+     */
     public int getOffset(int hauteur, int largeur)
     {
+        if(hauteur < 0 || largeur < 0)
+        {
+            throw new ArithmeticException("PartCreuse : getOffset : coordonnees invalides");
+        }
         return hauteur * taille + largeur;
     }
 
+    /**
+     * Calcule la hauteur a partir de l'offset donne.
+     * 
+     * @param offset offset a partir duquel on veut extraire la hauteur
+     * @return hauteur correspondant a l'offset donne
+     */
     public int getHauteur(int offset)
     {
+        if(offset < 0)
+        {
+            throw new ArithmeticException("PartCreuse : getHauteur : offset invalide");
+        }
         return offset / taille; //(ou offset / (taille + 1) ?)
     }
 
+    /**
+     * Calcule la largeur a partir de l'offset donne.
+     * 
+     * @param offset offset a partir duquel on veut extraire la largeur
+     * @return largeur correspondant a l'offset donne
+     */
     public int getLargeur(int offset)
     {
+        if(offset < 0)
+        {
+            throw new ArithmeticException("PartCreuse : getLargeur : offset invalide");
+        }
         return offset % taille;
     }
-
-    /*
- * offset = hauteur * taille + largeur
- *      offset - largeur = hauteur * taille *      
- * hauteur = (offset - largeur) / taille
- *      - largeur = hauteur * taille - offset
- * largeur = - (hauteur * taille - offset)
- * 
- * hauteur / taille
- * 
- * offset = x * taille + x
- * offset - x = x * taille
- * (offset - x) / x = taille
- * offset / x - x / x = taille
- * offset / x - 1 = taille
- * offset / x = taille + 1
- * offset = (taille + 1) * x
- * offset / (taille + 1) = x
- */ 
     
 }
