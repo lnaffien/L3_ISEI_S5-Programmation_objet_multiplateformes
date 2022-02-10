@@ -15,8 +15,16 @@ public class MatriceCreuse extends Matrice
     public MatriceCreuse(Matrice m)
     {
         super(m);
-        this.partManager = new PartManagerCreuse(taille);
-        initMatrice(m);
+        
+        if(m.partManager.getClass() == PartManagerCreuse.class)
+        {
+            this.partManager = m.partManager;
+        }
+        else
+        {
+            this.partManager = new PartManagerCreuse(taille);
+            initMatrice(m);
+        }        
     }
 
      /**

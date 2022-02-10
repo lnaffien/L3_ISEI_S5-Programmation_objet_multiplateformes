@@ -6,8 +6,6 @@ import Matrice.MatriceLineaire;
 
 /* A ajouter : 
  * - Calcul de la matrice transposée (= échange des indices (ex : 2 3 5 et 3 2 9. Il faut avoir 2 3 9 et 3 2 5.). Tres rapide pour la matrice creuse)
- * 
- * Notes : La matrice que j'ai nommee dense est en réalité une matrice creuse. Mais du coup c'est quoi une matrice dense ?
  */
 
 public class Main
@@ -50,27 +48,21 @@ public class Main
                 ml = new MatriceLineaire(taille);
                 matrice = ml;
 
-            //     mc = new MatriceCreuse(matrice);
-            //     mc.afficherMatrice();
-
-            //     md = new MatriceDense(matrice);
-            //     md.afficherMatrice();
-            //     md.afficherMatriceDense();
+                mc = new MatriceCreuse(matrice);
+                mc.afficherPartMatrice();
+                mc.afficherMatriceFormeLineaire();
 
                 break;
 
             // Matrice creuse
             case 2 :
                 mc = new MatriceCreuse(taille);
-                mc.afficherPartMatrice();                
+                mc.afficherPartMatrice();  
+                mc.afficherMatriceFormeLineaire();              
                 matrice = mc;
 
                 ml = new MatriceLineaire(matrice);
                 ml.afficherPartMatrice();
-
-                // md = new MatriceDense(matrice);
-                // md.afficherMatrice();
-                // md.afficherMatriceDense();
 
                 break;
 
@@ -83,6 +75,35 @@ public class Main
         // Fermeture du Scanner afin d'eviter des fuites de memoire
         in.close();
 
+        /******************
+         *    Calculs     *
+         ******************/
+
+        // Addition    
+        System.out.println("MatriceLineaire + MatriceLineaire = ");
+        Matrice m_addition_ld = ml.additionnerMatrice(ml);
+        m_addition_ld.afficherMatriceFormeLineaire();
+
+        System.out.println("MatriceCreuse + MatriceCreuse = ");
+        Matrice m_addition_dc = mc.additionnerMatrice(mc);
+        m_addition_dc.afficherMatriceFormeLineaire();
+
+        System.out.println("MatriceLineaire + MatriceCreuse = ");
+        Matrice m_addition_lc = ml.additionnerMatrice(mc);
+        m_addition_lc.afficherMatriceFormeLineaire();
+        
+        // Multiplication
+        System.out.println("MatriceLineaire * MatriceLineaire = ");
+        Matrice m_multiplication_ld = ml.multiplierMatrice(ml);
+        m_multiplication_ld.afficherMatriceFormeLineaire();
+
+        System.out.println("MatriceCreuse * MatriceCreuse = ");
+        Matrice m_multiplication_dc = mc.multiplierMatrice(mc);
+        m_multiplication_dc.afficherMatriceFormeLineaire();
+
+        System.out.println("MatriceLineaire * MatriceCreuse = ");
+        Matrice m_multiplication_lc = ml.multiplierMatrice(mc);
+        m_multiplication_lc.afficherMatriceFormeLineaire();
         
     }
 }

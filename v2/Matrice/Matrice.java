@@ -13,7 +13,6 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 package Matrice;
 
 import java.util.Scanner;
-
 import PartManager.PartManager;
 
 public abstract class Matrice
@@ -25,7 +24,7 @@ public abstract class Matrice
      *************************************************/
 
     int taille;                 // Taille de la matrice carree.
-    Scanner in;                 // Flux d'entrees standard pour les entrees clavier de l'utilisateur.
+    protected Scanner in;       // Flux d'entrees standard pour les entrees clavier de l'utilisateur.
     PartManager partManager;    // Manager pour gerer les 3 parties de la matrice (diagonale, partie inferieure et partie superieure).
 
     /*************************************************
@@ -126,71 +125,73 @@ public abstract class Matrice
         System.out.println();
     }
 
-    // /*************************************************
-    //  *          Calculs matriciels
-    //  *************************************************/
+    /*************************************************
+     *          Calculs matriciels
+     *************************************************/
 
-    // /**
-    //  * Additionne la matrice actuelle et celle donnee en parametres.
-    //  * @param m matrice a additionner
-    //  * @return matrice resultat de l'addition
-    //  */
-    // public MatriceCreuse additionnerMatrice(Matrice m)
-    // {
-    //     // Verification que les 2 matrices soient bien additionnables.
-    //     if(this.largeur != m.largeur || this.hauteur != m.hauteur)
-    //     {
-    //         throw new ArithmeticException("Les 2 matrices a additionner sont de tailles differentes.");
-    //     }
+    /**
+     * Additionne la matrice actuelle et celle donnee en parametres.
+     * @param m matrice a additionner
+     * @return matrice resultat de l'addition
+     */
+    public MatriceLineaire additionnerMatrice(Matrice m)
+    {
+        // Verification que les 2 matrices soient bien additionnables.
+        if(this.taille != m.taille)
+        {
+            throw new ArithmeticException("Matrice : additionnerMatrice : addition impossible, car les matrices sont de tailles differentes");
+        }
 
-    //     // Declaration d'une matrice resultat.
-    //     MatriceCreuse matrice_resultat = new MatriceCreuse(m);
+        // Declaration d'une matrice resultat.
+        MatriceLineaire ml = new MatriceLineaire(m);
 
-    //     // Stockage du resultat dans la matrice resultat.
-    //     for(int i = 0; i < this.hauteur; i ++)
-    //     {
-    //         for(int j = 0; j < this.largeur; j++)
-    //         {
-    //             matrice_resultat.matrice[i][j] += this.matrice[i][j];
-    //         }
-    //     }
-    //     return matrice_resultat;
-    // }
+        // Stockage du resultat dans la matrice resultat.
+        for(int i = 0; i < this.taille; i ++)
+        {
+            for(int j = 0; j < this.taille; j++)
+            {
+                ml.partManager.ajouterValeur(i, j, ml.partManager.getValueFromIndex(i, j) + this.partManager.getValueFromIndex(i, j));                
+                //matrice_resultat.matrice[i][j] += this.matrice[i][j];
+            }
+        }
+        return ml;
+    }
 
-    // /**
-    //  * Multiplie la matrice actuelle par celle donnee en parametres.
-    //  * @param m matrice multiplicative
-    //  * @return matrice resultat de la multiplication
-    //  */
-    // public MatriceCreuse multiplierMatrice(Matrice m)
-    // {
-    //     // Verification que les 2 matrices peuvent bien être multipliées.
-    //     if(this.largeur != m.hauteur || this.hauteur != m.largeur)
-    //     {
-    //         throw new ArithmeticException("Les 2 matrices a multiplier n'ont pas des tailles compatibles.");
-    //     }
+    /**
+     * Multiplie la matrice actuelle par celle donnee en parametres.
+     * @param m matrice multiplicative
+     * @return matrice resultat de la multiplication
+     */
+    public MatriceLineaire multiplierMatrice(Matrice m)
+    {
+        // Verification que les 2 matrices peuvent bien être multipliées.
+        if(this.taille != m.taille)
+        {
+            throw new ArithmeticException("Matrice : multiplierMatrice : multiplication impossible, car les matrices n'ont pas des tailles compatibles");
+        }
 
-    //     // Declaration d'une matrice resultat.
-    //     MatriceCreuse matrice_resultat = new MatriceCreuse(m);
-    //     int somme;
+        // Declaration d'une matrice resultat.
+        MatriceLineaire ml = new MatriceLineaire(m);
+        int somme;
 
-    //     // Stockage du resultat dans la matrice resultat.
-    //     for(int i = 0; i < this.hauteur; i++)
-    //     {
-    //         for(int j = 0; j < m.largeur; j++)
-    //         {                
-    //             somme = 0;
+        // Stockage du resultat dans la matrice resultat.
+        for(int i = 0; i < this.taille; i++)
+        {
+            for(int j = 0; j < m.taille; j++)
+            {                
+                somme = 0;
 
-    //             for(int k = 0; k < this.largeur; k ++)
-    //             {
-    //                somme += this.matrice[i][k] * m.matrice[k][j];
-    //             }
-    //             matrice_resultat.modifierValeur(i, j, somme);
-    //         }            
-    //     }
+                for(int k = 0; k < this.taille; k ++)
+                {
+                    somme += this.partManager.getValueFromIndex(i, k) * m.partManager.getValueFromIndex(k, j);
+                   // somme += this.matrice[i][k] * m.matrice[k][j];
+                }
+                ml.modifierValeur(i, j, somme);
+            }            
+        }
 
-    //     return matrice_resultat;
-    // }
+        return ml;
+    }
     
 
 }
