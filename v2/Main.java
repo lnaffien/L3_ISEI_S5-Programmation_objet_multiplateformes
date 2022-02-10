@@ -62,11 +62,11 @@ public class Main
             // Matrice creuse
             case 2 :
                 mc = new MatriceCreuse(taille);
-                mc.afficherMatrice();                
+                mc.afficherPartMatrice();                
                 matrice = mc;
 
                 ml = new MatriceLineaire(matrice);
-                ml.afficherMatrice();
+                ml.afficherPartMatrice();
 
                 // md = new MatriceDense(matrice);
                 // md.afficherMatrice();

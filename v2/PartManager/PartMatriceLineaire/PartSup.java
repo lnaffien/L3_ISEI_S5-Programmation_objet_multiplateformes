@@ -1,9 +1,7 @@
-package PartMatrice;
+package PartManager.PartMatriceLineaire;
 
-public class PartInf
+class PartSup extends PartLineaire
 {
-    private int values_array[]; // Tableau contenant les valeurs de la partie superieure de la matrice de facon lineaire.
-    int taille;                   // Taille de la matrice carree.
 
     /*************************************************
      * 
@@ -15,9 +13,9 @@ public class PartInf
      * Constructeur.
      * @param taille taille de la matrice caree
      */
-    public PartInf(int taille)
+    protected PartSup(int taille)
     {
-        this.taille = taille;
+        super(taille);
         values_array = new int[((taille * taille) - taille) / 2];
     }
 
@@ -33,14 +31,14 @@ public class PartInf
      * @param largeur position dans la largeur de la matrice
      * @return valeur stockee a la position donnee
      */
-    public int getValueFromIndex(int hauteur, int largeur)
+    protected int getValueFromIndex(int hauteur, int largeur)
     {
         // Verification de la validite des index donnes.
-        if(hauteur <= 0 || hauteur >= taille || largeur < 0 || largeur >= taille - 1)
+        if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille)
         {
             throw new ArithmeticException("PartInf : getValueFromIndex : index invalide :"  + hauteur + ", " + largeur);
         }
-        return values_array[largeur + exp(hauteur - 1)];
+        return values_array[hauteur * taille + largeur - exp(hauteur) - hauteur - 1];
     }
 
     /**
@@ -49,53 +47,29 @@ public class PartInf
      * @param largeur position dans la largeur de la matrice
      * @param value nouvelle valeur a ajouter
      */
-    public void addValue(int hauteur, int largeur, int valeur)
+    protected void ajouterValeur(int hauteur, int largeur, int valeur)
     {
-        if(hauteur <= 0 || hauteur >= taille || largeur < 0 || largeur >= taille - 1 || hauteur < largeur)
+        if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
         {
-            throw new ArithmeticException("PartInf : addValue : index invalide : " + hauteur + ", " + largeur);
+            throw new ArithmeticException("PartSup : addValue : index invalide : " + hauteur + ", " + largeur);
         }
 
-        values_array[largeur + exp(hauteur - 1)] = valeur;
+        values_array[hauteur * taille + largeur - exp(hauteur) - hauteur - 1] = valeur;
     }
 
     /**
-     * Calcule l'exponentielle d'une valeur donnee.
-     * @param val valeur dont on veut connaitre l'exponentielle
-     * @return exponentielle de la valeur donnee
+     * Affiche la partie superieure de la matrice.
      */
-    private int exp(int val)
+    protected void display()
     {
-        int res = val;
-        if(val > 0)
-        {
-            res += exp(val - 1);
-        }
-        return res;
-    }
-
-    /**
-     * Retourne les valeurs de la partie inferieure de la matrice.
-     * @return valeurs de la partie inferieure de la matrice
-     */
-    public int[] getPartInf()
-    {
-        return this.values_array;
-    }
-
-    /**
-     * Affiche la partie inferieure de la matrice.
-     */
-    public void display()
-    {
-        int hauteur = 1;
+        int hauteur = 0;
         int i = 0;
         for (int value : values_array)
         {
             System.out.print(value + " ; ");
             i++;
 
-            if(i >= hauteur)
+            if(i + hauteur >= taille - 1)
             {
                 System.out.println();
                 hauteur++;

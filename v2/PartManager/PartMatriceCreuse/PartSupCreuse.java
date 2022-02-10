@@ -1,4 +1,4 @@
-package PartMatrice;
+package PartManager.PartMatriceCreuse;
 
 public class PartSupCreuse extends PartCreuse
 {

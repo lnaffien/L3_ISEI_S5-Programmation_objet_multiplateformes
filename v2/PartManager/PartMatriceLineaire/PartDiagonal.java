@@ -1,10 +1,7 @@
-package PartMatrice;
+package PartManager.PartMatriceLineaire;
 
-public class PartDiagonal
+public class PartDiagonal extends PartLineaire
 {
-    private int values_array[]; // Tableau contenant les valeurs de la diagonale de la matrice de facon lineaire.
-    int taille;                   // Taille de la matrice carree.
-
     /*************************************************
      * 
      *              Constructeurs
@@ -15,9 +12,9 @@ public class PartDiagonal
      * Constructeur.
      * @param taille taille de la matrice caree
      */
-    public PartDiagonal(int taille)
+    protected PartDiagonal(int taille)
     {
-        this.taille = taille;
+        super(taille);
         values_array = new int[taille];
     }
 
@@ -32,7 +29,7 @@ public class PartDiagonal
      * @param index position dans la hauteur et dans la largeur de la matrice
      * @return valeur stockee a la position donnee
      */
-    public int getValueFromIndex(int index)
+    protected int getValueFromIndex(int index)
     {
         // Verification de la validite des index donnes.
         if(index >= taille || index < 0)
@@ -47,7 +44,7 @@ public class PartDiagonal
      * @param index position dans la hauteur et dans la largeur de la matrice
      * @param valeur nouvelle valeur a ajouter
      */
-    public void addValue(int index, int valeur)
+    protected void ajouterValeur(int index, int valeur)
     {
         if(index >= taille || index < 0)
         {
@@ -57,18 +54,9 @@ public class PartDiagonal
     }
 
     /**
-     * Retourne les valeurs de la diagonale de la matrice.
-     * @return valeurs de la diagonale de la matrice
-     */
-    public int[] getDiagonal()
-    {
-        return this.values_array;
-    }
-
-    /**
      * Affiche la diagonale de la matrice.
      */
-    public void display()
+    protected void display()
     {
         for (int value : values_array)
         {

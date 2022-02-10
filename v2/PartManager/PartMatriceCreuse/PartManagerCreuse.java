@@ -1,6 +1,8 @@
-package PartMatrice;
+package PartManager.PartMatriceCreuse;
 
-public class PartManagerCreuse
+import PartManager.PartManager;
+
+public class PartManagerCreuse implements PartManager
 {    
     PartDiagonalCreuse partDiagCr;  // Diagonale de la matrice creuse.
     PartSupCreuse partSupCr;        // Partie superieure de la matrice creuse.
@@ -60,6 +62,16 @@ public class PartManagerCreuse
         {
             partSupCr.supprimerValeur(hauteur, largeur);
         }
+    }
+
+    public void afficherPartMatrice()
+    {
+        System.out.println("Diagonale :");
+        partDiagCr.display();
+        System.out.println("Partie inferieure :");
+        partInfCr.display();
+        System.out.println("Partie superieure :");
+        partSupCr.display();
     }
     
 }

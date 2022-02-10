@@ -13,7 +13,8 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 package Matrice;
 
 import java.util.Scanner;
-import PartMatrice.PartManager;
+
+import PartManager.PartManager;
 
 public abstract class Matrice
 {
@@ -24,9 +25,8 @@ public abstract class Matrice
      *************************************************/
 
     int taille;                 // Taille de la matrice carree.
-    PartManager partManager;    //
-
     Scanner in;                 // Flux d'entrees standard pour les entrees clavier de l'utilisateur.
+    PartManager partManager;    // Manager pour gerer les 3 parties de la matrice (diagonale, partie inferieure et partie superieure).
 
     /*************************************************
      * 
@@ -49,7 +49,6 @@ public abstract class Matrice
         // Initialisation des variables globales.
         this.taille = taille;
         in = new Scanner(System.in);
-        this.partManager = new PartManager(taille);
     }
 
     /**
@@ -66,7 +65,6 @@ public abstract class Matrice
 
         // Initialisation des variables globales. La variable in n'etant pas utilisee, elle n'est pas initialisee.
         this.taille = m.taille;
-        this.partManager = m.partManager;
     }
 
     /*************************************************
@@ -74,64 +72,6 @@ public abstract class Matrice
      *              Methodes
      * 
      *************************************************/
-
-    /**
-     * Affiche la matrice sous sa forme lineaire.
-     */
-    public void afficherMatrice()
-    {        
-        System.out.println(this.getClass() + " :");
-        for(int i = 0; i < this.taille; i++)
-        {
-            for(int j = 0; j < this.taille; j++)
-            {
-                System.out.print(this.partManager.getValueFromIndex(i, j) + " | ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-    
-    /** 
-     * Modifie une valeur a une position donnee dans la matrice.
-     * @param x position dans la hauteur de la matrice
-     * @param y position dans la largeur de la matrice
-     * @param valeur nouvelle valeur a ajouter
-     */
-    public void modifierValeur(int x, int y, int valeur)
-    {
-        this.partManager.addValue(x, y, valeur);
-    } 
-
-    /**
-     * Initialisation manuelle de la matrice.
-     */
-    protected void initMatrice()
-    {
-        System.out.println("Veuillez indiquer les cases non nulles de la matrice sous la forme suivante : x(hauteur) y(largeur) valeur");
-        System.out.println("Attention : une case deja enregistree sera reecrite.");
-        System.out.println("Exemple :\n0 0 5");
-
-        int fin = 1;
-        while(fin != 0)
-        {
-            // Ajout d'une nouvelle valeur en fonction de l'entree renseignee.
-            System.out.println("Nouvelle valeur : ");
-            modifierValeur(in.nextInt(), in.nextInt(), in.nextInt());
-
-            // Verification que l'utilisateur veuille continuer ou non.
-            System.out.println("Continuer ?");
-            System.out.println("0 : non");
-            System.out.println("1 : oui");
-            fin = in.nextInt();
-        }
-
-        System.out.println("Fin de l'entree des donnees.\n");
-
-        // Fermeture du Scanner afin d'eviter des fuites de memoire.
-        in.close();
-    }
-
     
     /** 
      * Initialisation de la matrice a partir d'une autre.
@@ -151,6 +91,39 @@ public abstract class Matrice
                 }
             }
         }
+    }
+    
+    /** 
+     * Modifie une valeur a une position donnee dans la matrice.
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
+     * @param valeur nouvelle valeur a ajouter
+     */
+    public void modifierValeur(int hauteur, int largeur, int valeur)
+    {
+        this.partManager.ajouterValeur(hauteur, largeur, valeur);
+    }
+
+    public void afficherPartMatrice()
+    {
+        partManager.afficherPartMatrice();
+    }
+    
+    /**
+     * Affiche la matrice sous sa forme lineaire.
+     */
+    public void afficherMatriceFormeLineaire()
+    {        
+        System.out.println(this.getClass() + " :");
+        for(int i = 0; i < this.taille; i++)
+        {
+            for(int j = 0; j < this.taille; j++)
+            {
+                System.out.print(this.partManager.getValueFromIndex(i, j) + " | ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     // /*************************************************

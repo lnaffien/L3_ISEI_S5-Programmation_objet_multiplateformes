@@ -1,6 +1,6 @@
-package PartMatrice;
+package PartManager.PartMatriceCreuse;
 
-public class PartCreuse
+public abstract class PartCreuse
 {
     public int values_array[][];                // Tableau 2D contenant les valeurs de la partie de la matrice de facon dense.
     final int VALUES_ARRAY_NBR_COLONNES = 2;    // Nombre de colonnes du tableau de donnees.
@@ -70,6 +70,7 @@ public class PartCreuse
         {
             System.out.println("[" + values_array[i][VALUES_ARRAY_OFFSET] + ", " + values_array[i][VALUES_ARRAY_VALUE] + "] ");
         }
+        System.out.println();
     }
 
     /**

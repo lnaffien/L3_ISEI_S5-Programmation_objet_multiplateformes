@@ -1,4 +1,7 @@
 package Matrice;
+
+import PartManager.PartMatriceLineaire.PartManagerLineaire;
+
 /***********************************************************************************************************************************************
 
                                                                 MatriceLineaire
@@ -13,7 +16,7 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 ************************************************************************************************************************************************/
 
 public class MatriceLineaire extends Matrice
-{
+{    
     /*************************************************
      * 
      *              Constructeurs
@@ -26,7 +29,8 @@ public class MatriceLineaire extends Matrice
      */
     public MatriceLineaire(int taille)
     {
-        super(taille);
+        super(taille);        
+        this.partManager = new PartManagerLineaire(taille);
         initMatrice();
     }
 
@@ -37,6 +41,7 @@ public class MatriceLineaire extends Matrice
     public MatriceLineaire(Matrice m)
     {
         super(m);
+        this.partManager = new PartManagerLineaire(m.taille); // m.partManager;
         initMatrice(m);
     }
 
@@ -54,7 +59,6 @@ public class MatriceLineaire extends Matrice
      * Initialisation manuelle de la matrice.
      * Initialisation separee de la diagonale, de la partie inferieure et de la partie superieure.
      */
-    @Override
     protected void initMatrice()
     {
         initDiagonale();
@@ -76,12 +80,14 @@ public class MatriceLineaire extends Matrice
         while (h_curseur < this.taille && l_curseur < this.taille)
         {
             System.out.print("[" + h_curseur + "][" + l_curseur + "] = ");
-            this.partManager.addValue(h_curseur++, l_curseur++, in.nextInt());
+            this.partManager.ajouterValeur(h_curseur, l_curseur, in.nextInt());
+            h_curseur++;
+            l_curseur++;
         }
 
         // Affichage de ce qui a deja ete initialise. 
         System.out.println();
-        this.afficherMatrice();
+        this.afficherMatriceFormeLineaire();
     }
 
     /**
@@ -99,7 +105,7 @@ public class MatriceLineaire extends Matrice
         while(h_curseur < this.taille)
         {
             System.out.print("[" + h_curseur + "][" + l_curseur + "] = ");
-            this.partManager.addValue(h_curseur, l_curseur, in.nextInt());
+            this.partManager.ajouterValeur(h_curseur, l_curseur, in.nextInt());
 
             l_curseur ++;
             
@@ -114,7 +120,7 @@ public class MatriceLineaire extends Matrice
 
         // Affichage de ce qui a deja ete initialise. 
         System.out.println();
-        this.afficherMatrice();
+        this.afficherMatriceFormeLineaire();
     }
 
     /**
@@ -132,7 +138,7 @@ public class MatriceLineaire extends Matrice
         while(h_curseur < this.taille && l_curseur < this.taille)
         {
             System.out.print("[" + h_curseur + "][" + l_curseur + "] = ");
-            this.partManager.addValue(h_curseur, l_curseur, in.nextInt());
+            this.partManager.ajouterValeur(h_curseur, l_curseur, in.nextInt());
 
             l_curseur ++;
 
@@ -147,7 +153,7 @@ public class MatriceLineaire extends Matrice
 
         // Affichage de ce qui a deja ete initialise. 
         System.out.println();
-        this.afficherMatrice();
+        this.afficherMatriceFormeLineaire();
     }
 
     /*************************************************
@@ -179,7 +185,7 @@ public class MatriceLineaire extends Matrice
         // Tant que les index ne depassent pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
         while(h_curseur < this.taille && l_curseur < this.taille)
         {
-            this.partManager.addValue(h_curseur, l_curseur, m.partManager.getValueFromIndex(h_curseur, l_curseur));
+            this.partManager.ajouterValeur(h_curseur, l_curseur, m.partManager.getValueFromIndex(h_curseur, l_curseur));
             h_curseur++;
             l_curseur++;
         }
@@ -198,7 +204,7 @@ public class MatriceLineaire extends Matrice
         // Tant que l'index actuel ne depasse pas la hauteur maximale de la matrice, ajout d'une nouvelle valeur.
         while(h_curseur < this.taille)
         {
-            this.partManager.addValue(h_curseur, l_curseur, m.partManager.getValueFromIndex(h_curseur, l_curseur));
+            this.partManager.ajouterValeur(h_curseur, l_curseur, m.partManager.getValueFromIndex(h_curseur, l_curseur));
             l_curseur ++;
 
             // Mise a jour des curseurs s'ils atteignent la diagonale ou la largeur maximale de la matrice.
@@ -224,7 +230,7 @@ public class MatriceLineaire extends Matrice
         // Tant que l'index actuel ne depasse pas la hauteur ou la largeur maximale de la matrice, ajout d'une nouvelle valeur.
         while(h_curseur < this.taille && l_curseur < this.taille)
         {
-            this.partManager.addValue(h_curseur, l_curseur, m.partManager.getValueFromIndex(h_curseur, l_curseur));
+            this.partManager.ajouterValeur(h_curseur, l_curseur, m.partManager.getValueFromIndex(h_curseur, l_curseur));
             l_curseur ++;
 
             // Mise a jour des curseurs s'ils atteignent la largeur maximale de la matrice.
@@ -236,6 +242,7 @@ public class MatriceLineaire extends Matrice
             }
         }
     }
+
 
     
 }
