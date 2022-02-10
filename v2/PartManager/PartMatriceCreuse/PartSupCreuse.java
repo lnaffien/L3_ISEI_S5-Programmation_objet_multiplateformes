@@ -1,6 +1,6 @@
 package PartManager.PartMatriceCreuse;
 
-public class PartSupCreuse extends PartCreuse
+class PartSupCreuse extends PartCreuse
 {
 
    /*************************************************
@@ -13,7 +13,7 @@ public class PartSupCreuse extends PartCreuse
      * Constructeur.
      * @param taille taille de la matrice caree
      */
-    public PartSupCreuse(int taille)
+    protected PartSupCreuse(int taille)
     {
         super(taille);
     }
@@ -29,7 +29,7 @@ public class PartSupCreuse extends PartCreuse
      * @param index position dans la hauteur et dans la largeur de la matrice
      * @return valeur stockee a la position donnee
      */
-    public int getValueFromIndex(int hauteur, int largeur)
+    protected int getValueFromIndex(int hauteur, int largeur)
     {
         // Verification de la validite des index donnes.
         if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
@@ -59,7 +59,7 @@ public class PartSupCreuse extends PartCreuse
      * @param largeur position dans la largeur de la matrice
      * @param valeur nouvelle valeur a ajouter
      */
-    public void ajouterValeur(int hauteur, int largeur, int valeur)
+    protected void ajouterValeur(int hauteur, int largeur, int valeur)
     {
         // Verification de la validite de l'index
         if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
@@ -120,7 +120,7 @@ public class PartSupCreuse extends PartCreuse
      * @param hauteur coordonnee de la hauteur dont on veut supprimer la valeur
      * @param largeur coordonnee de la largeur dont on veut supprimer la valeur
      */
-    public void supprimerValeur(int hauteur, int largeur)
+    protected void supprimerValeur(int hauteur, int largeur)
     {
         if(hauteur < 0 || hauteur >= taille - 1 || largeur <= 0 || largeur >= taille || hauteur > largeur)
         {

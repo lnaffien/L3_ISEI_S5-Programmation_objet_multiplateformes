@@ -1,7 +1,6 @@
 package PartManager.PartMatriceCreuse;
 
-
-public class PartDiagonalCreuse extends PartCreuse
+class PartDiagonalCreuse extends PartCreuse
 {   
 
     /*************************************************
@@ -14,7 +13,7 @@ public class PartDiagonalCreuse extends PartCreuse
      * Constructeur.
      * @param taille taille de la matrice caree
      */
-    public PartDiagonalCreuse(int taille)
+    protected PartDiagonalCreuse(int taille)
     {
         super(taille);
     }
@@ -30,7 +29,7 @@ public class PartDiagonalCreuse extends PartCreuse
      * @param index position dans la hauteur et dans la largeur de la matrice
      * @return valeur stockee a la position donnee
      */
-    public int getValueFromIndex(int index)
+    protected int getValueFromIndex(int index)
     {
         // Verification de la validite des index donnes.
         if(index >= taille || index < 0)
@@ -59,7 +58,7 @@ public class PartDiagonalCreuse extends PartCreuse
      * @param index position dans la hauteur et dans la largeur de la matrice
      * @param valeur nouvelle valeur a ajouter
      */
-    public void ajouterValeur(int index, int valeur)
+    protected void ajouterValeur(int index, int valeur)
     {
         // Verification de la validite de l'index
         if(index >= taille || index < 0)
@@ -113,7 +112,7 @@ public class PartDiagonalCreuse extends PartCreuse
      * Supprime la valeur a un index donne.
      * @param index index dont on veut supprimer la valeur
      */
-    public void supprimerValeur(int index)
+    protected void supprimerValeur(int index)
     {
         int offset = getOffset(index, index);
         int temp_array[][] = values_array;
