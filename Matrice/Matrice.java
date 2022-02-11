@@ -191,16 +191,8 @@ public abstract class Matrice
         {
             throw new ArithmeticException("Matrice : transposer : la matrice resultat n'est pas de la meme taille que la matrice initiale");
         }
-        
         transpose = m_initiale;
-                
-        for(int i = 0; i < taille; i++)
-        {
-            for (int j = 0; j < taille; j++)
-            {
-                transpose.partManager.transposer(i, j);
-            }
-        }
+        transpose.partManager.transposer();
         return transpose;
     }    
 

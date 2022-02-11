@@ -74,15 +74,26 @@ public class PartManagerCreuse implements PartManager
         partSupCr.display();
     }    
 
-    public void transposer(int hauteur, int largeur)
+    public PartManagerCreuse transposer()
     {
-        // Si c'est une diagonale, ne rien faire
-        if(hauteur != largeur)
-        {
-            int valeur_ecrasee = getValueFromIndex(largeur, hauteur);
-            ajouterValeur(largeur, hauteur, getValueFromIndex(hauteur, largeur));
-            ajouterValeur(hauteur, largeur, valeur_ecrasee);
+        PartManagerCreuse res_creuse = new PartManagerCreuse(partSupCr.taille);
+        res_creuse.partDiagCr = this.partDiagCr;
+
+        int offset;
+
+        for(int i = 0; i < partSupCr.values_array.length; i++)
+        {            
+            offset = this.partSupCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
+            res_creuse.ajouterValeur(this.partSupCr.getLargeur(offset), this.partSupCr.getHauteur(offset), partSupCr.values_array[i][((PartCreuse)partSupCr).VALUES_ARRAY_VALUE]);
         }
+
+        for(int i = 0; i< partInfCr.values_array.length; i++)
+        {
+            offset = this.partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
+            res_creuse.ajouterValeur(this.partInfCr.getLargeur(offset), this.partInfCr.getHauteur(offset), partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_VALUE]);
+        }
+
+        return res_creuse;
     }
     
 }

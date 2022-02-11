@@ -58,15 +58,22 @@ public class PartManagerLineaire implements PartManager
         partSup.display();
     }    
 
-    public void transposer(int hauteur, int largeur)
+    public PartManagerLineaire transposer()
     {
-        // Si c'est une diagonale, ne rien faire
-        if(hauteur != largeur)
+        PartManagerLineaire res_lineaire = new PartManagerLineaire(partSup.taille);
+        res_lineaire.partDiag = this.partDiag;
+
+        for(int i = 0; i < partSup.values_array.length; i++)
         {
-            int valeur_ecrasee = getValueFromIndex(largeur, hauteur);
-            ajouterValeur(largeur, hauteur, getValueFromIndex(hauteur, largeur));
-            ajouterValeur(hauteur, largeur, valeur_ecrasee);
+
         }
+
+        for(int i = 0; i< partInf.values_array.length; i++)
+        {
+            
+        }
+
+        return res_lineaire;
     }
     
 }
