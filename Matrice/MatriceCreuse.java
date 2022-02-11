@@ -1,6 +1,6 @@
 package Matrice;
 
-import PartManager.PartMatriceCreuse.PartManagerCreuse;
+import PartMatriceCreuse.PartManagerCreuse;
 
 public class MatriceCreuse extends Matrice
 {
@@ -55,7 +55,5 @@ public class MatriceCreuse extends Matrice
         // Fermeture du Scanner afin d'eviter des fuites de memoire.
         in.close();
     }
-
-
     
 }

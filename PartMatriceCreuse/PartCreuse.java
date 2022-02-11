@@ -1,4 +1,4 @@
-package PartManager.PartMatriceCreuse;
+package PartMatriceCreuse;
 
 abstract class PartCreuse
 {
@@ -117,5 +117,4 @@ abstract class PartCreuse
         }
         return offset % taille;
     }
-    
 }

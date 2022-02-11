@@ -78,32 +78,46 @@ public class Main
         /******************
          *    Calculs     *
          ******************/
+        MatriceLineaire resultat_ml = new MatriceLineaire(matrice);
 
         // Addition    
         System.out.println("MatriceLineaire + MatriceLineaire = ");
-        Matrice m_addition_ld = ml.additionnerMatrice(ml);
-        m_addition_ld.afficherMatriceFormeLineaire();
+        ml.additionnerMatrice(ml, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
         System.out.println("MatriceCreuse + MatriceCreuse = ");
-        Matrice m_addition_dc = mc.additionnerMatrice(mc);
-        m_addition_dc.afficherMatriceFormeLineaire();
+        mc.additionnerMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
         System.out.println("MatriceLineaire + MatriceCreuse = ");
-        Matrice m_addition_lc = ml.additionnerMatrice(mc);
-        m_addition_lc.afficherMatriceFormeLineaire();
+        ml.additionnerMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
         
         // Multiplication
         System.out.println("MatriceLineaire * MatriceLineaire = ");
-        Matrice m_multiplication_ld = ml.multiplierMatrice(ml);
-        m_multiplication_ld.afficherMatriceFormeLineaire();
+        ml.multiplierMatrice(ml, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
         System.out.println("MatriceCreuse * MatriceCreuse = ");
-        Matrice m_multiplication_dc = mc.multiplierMatrice(mc);
-        m_multiplication_dc.afficherMatriceFormeLineaire();
+        mc.multiplierMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
         System.out.println("MatriceLineaire * MatriceCreuse = ");
-        Matrice m_multiplication_lc = ml.multiplierMatrice(mc);
-        m_multiplication_lc.afficherMatriceFormeLineaire();
+        ml.multiplierMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
+
+        // Transposition
+        System.out.println("MatriceLineaire et MatriceLineaire = ");
+        ml.transposer(ml, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
+
+        System.out.println("MatriceCreuse et MatriceCreuse = ");
+        mc.transposer(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
+
+        System.out.println("MatriceLineaire et MatriceCreuse = ");
+        ml.transposer(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
         
     }
 }

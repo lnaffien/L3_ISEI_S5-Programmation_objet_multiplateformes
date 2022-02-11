@@ -1,6 +1,6 @@
-package PartManager.PartMatriceLineaire;
+package PartMatriceLineaire;
 
-import PartManager.PartManager;
+import Matrice.PartManager;
 
 public class PartManagerLineaire implements PartManager
 {    
@@ -56,6 +56,17 @@ public class PartManagerLineaire implements PartManager
         partInf.display();
         System.out.println("Partie superieure :");
         partSup.display();
+    }    
+
+    public void transposer(int hauteur, int largeur)
+    {
+        // Si c'est une diagonale, ne rien faire
+        if(hauteur != largeur)
+        {
+            int valeur_ecrasee = getValueFromIndex(largeur, hauteur);
+            ajouterValeur(largeur, hauteur, getValueFromIndex(hauteur, largeur));
+            ajouterValeur(hauteur, largeur, valeur_ecrasee);
+        }
     }
     
 }

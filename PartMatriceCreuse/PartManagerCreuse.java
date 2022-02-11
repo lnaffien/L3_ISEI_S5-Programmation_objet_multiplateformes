@@ -1,6 +1,6 @@
-package PartManager.PartMatriceCreuse;
+package PartMatriceCreuse;
 
-import PartManager.PartManager;
+import Matrice.PartManager;
 
 public class PartManagerCreuse implements PartManager
 {    
@@ -72,6 +72,17 @@ public class PartManagerCreuse implements PartManager
         partInfCr.display();
         System.out.println("Partie superieure :");
         partSupCr.display();
+    }    
+
+    public void transposer(int hauteur, int largeur)
+    {
+        // Si c'est une diagonale, ne rien faire
+        if(hauteur != largeur)
+        {
+            int valeur_ecrasee = getValueFromIndex(largeur, hauteur);
+            ajouterValeur(largeur, hauteur, getValueFromIndex(hauteur, largeur));
+            ajouterValeur(hauteur, largeur, valeur_ecrasee);
+        }
     }
     
 }

@@ -1,6 +1,6 @@
 package Matrice;
 
-import PartManager.PartMatriceLineaire.PartManagerLineaire;
+import PartMatriceLineaire.PartManagerLineaire;
 
 /***********************************************************************************************************************************************
 

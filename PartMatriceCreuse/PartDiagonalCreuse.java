@@ -1,4 +1,4 @@
-package PartManager.PartMatriceCreuse;
+package PartMatriceCreuse;
 
 class PartDiagonalCreuse extends PartCreuse
 {   

@@ -1,4 +1,4 @@
-package PartManager.PartMatriceLineaire;
+package PartMatriceLineaire;
 
 public class PartDiagonal extends PartLineaire
 {
