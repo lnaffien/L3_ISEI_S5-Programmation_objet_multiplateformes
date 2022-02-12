@@ -78,7 +78,7 @@ public class Main
         /******************
          *    Calculs     *
          ******************/
-        MatriceCreuse resultat_ml = new MatriceCreuse(matrice);
+        MatriceLineaire resultat_ml = new MatriceLineaire(matrice);
 
         // Addition    
         // System.out.println("MatriceLineaire + MatriceLineaire = ");
@@ -107,9 +107,9 @@ public class Main
         // resultat_ml.afficherMatriceFormeLineaire();
 
         // Transposition
-        resultat_ml = mc;
+        resultat_ml = (MatriceLineaire)matrice;
         System.out.println("MatriceLineaire transposee = ");
-        ml.transposer(ml, resultat_ml);
+        resultat_ml = (MatriceLineaire)ml.transposer(ml, resultat_ml);
         resultat_ml.afficherPartMatrice();
 
         System.out.println("MatriceCreuse transposee = ");

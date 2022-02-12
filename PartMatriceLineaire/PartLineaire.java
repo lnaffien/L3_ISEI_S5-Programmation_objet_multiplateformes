@@ -3,7 +3,7 @@ package PartMatriceLineaire;
 abstract class PartLineaire
 {    
     int values_array[];     // Tableau contenant les valeurs de la partie superieure de la matrice de facon lineaire.
-    int taille;             // Taille de la matrice carree.
+    int taille;             // Taille de la matrice carree
 
     protected PartLineaire(int taille)
     {
@@ -33,4 +33,5 @@ abstract class PartLineaire
     {
         return this.values_array;
     }
+
 }

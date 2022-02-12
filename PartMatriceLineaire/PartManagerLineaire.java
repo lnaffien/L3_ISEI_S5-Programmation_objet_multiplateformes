@@ -63,15 +63,15 @@ public class PartManagerLineaire implements PartManager
         PartManagerLineaire res_lineaire = new PartManagerLineaire(partSup.taille);
         res_lineaire.partDiag = this.partDiag;
 
-        for(int i = 0; i < partSup.values_array.length; i++)
+        for(int i = 0; i < res_lineaire.partInf.values_array.length; i++)
         {
+            int valeur_ecrasee = res_lineaire.partInf.values_array[i] ;
+            res_lineaire.partInf.values_array[i] = res_lineaire.partSup.values_array[i];
+            res_lineaire.partSup.values_array[i] = valeur_ecrasee;
 
         }
 
-        for(int i = 0; i< partInf.values_array.length; i++)
-        {
-            
-        }
+        
 
         return res_lineaire;
     }
