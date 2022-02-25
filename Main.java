@@ -1,12 +1,18 @@
-import java.util.Scanner;
+/***********************************************************************************************************************************************
+
+                                                                Main
+                                                                            par NAFFIEN Lucie (janvier 2022)
+
+Cette classe appartient a un projet realise pour le module "Programmation objet multiplateformes", enseigne par M. MARIAGE, dans le cadre 
+de la 3eme annee de licence parcours Informatique des Systemes Embarques et Interactifs de l'Universite Paris 8.
+
+Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Programmation_objet_multiplateformes
+
+************************************************************************************************************************************************/import java.util.Scanner;
 
 import Matrice.Matrice;
 import Matrice.MatriceCreuse;
 import Matrice.MatriceLineaire;
-
-/* A ajouter : 
- * - Calcul de la matrice transposée (= échange des indices (ex : 2 3 5 et 3 2 9. Il faut avoir 2 3 9 et 3 2 5.). Tres rapide pour la matrice creuse)
- */
 
 public class Main
 {
@@ -75,6 +81,7 @@ public class Main
         // Fermeture du Scanner afin d'eviter des fuites de memoire
         in.close();
 
+
         /******************
          *    Calculs     *
          ******************/
@@ -82,38 +89,38 @@ public class Main
         MatriceCreuse resultat_cr = new MatriceCreuse(matrice);
 
         // Addition    
-        // System.out.println("MatriceLineaire + MatriceLineaire = ");
-        // ml.additionnerMatrice(ml, resultat_ml);
-        // resultat_ml.afficherMatriceFormeLineaire();
+        System.out.println("MatriceLineaire + MatriceLineaire = ");
+        ml.additionnerMatrice(ml, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
-        // System.out.println("MatriceCreuse + MatriceCreuse = ");
-        // mc.additionnerMatrice(mc, resultat_ml);
-        // resultat_ml.afficherMatriceFormeLineaire();
+        System.out.println("MatriceCreuse + MatriceCreuse = ");
+        mc.additionnerMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
-        // System.out.println("MatriceLineaire + MatriceCreuse = ");
-        // ml.additionnerMatrice(mc, resultat_ml);
-        // resultat_ml.afficherMatriceFormeLineaire();
+        System.out.println("MatriceLineaire + MatriceCreuse = ");
+        ml.additionnerMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
         
         // // Multiplication
-        // System.out.println("MatriceLineaire * MatriceLineaire = ");
-        // ml.multiplierMatrice(ml, resultat_ml);
-        // resultat_ml.afficherMatriceFormeLineaire();
+        System.out.println("MatriceLineaire * MatriceLineaire = ");
+        ml.multiplierMatrice(ml, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
-        // System.out.println("MatriceCreuse * MatriceCreuse = ");
-        // mc.multiplierMatrice(mc, resultat_ml);
-        // resultat_ml.afficherMatriceFormeLineaire();
+        System.out.println("MatriceCreuse * MatriceCreuse = ");
+        mc.multiplierMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
-        // System.out.println("MatriceLineaire * MatriceCreuse = ");
-        // ml.multiplierMatrice(mc, resultat_ml);
-        // resultat_ml.afficherMatriceFormeLineaire();
+        System.out.println("MatriceLineaire * MatriceCreuse = ");
+        ml.multiplierMatrice(mc, resultat_ml);
+        resultat_ml.afficherMatriceFormeLineaire();
 
         // Transposition
         System.out.println("MatriceLineaire transposee = ");
-        resultat_ml = (MatriceLineaire)ml.transposer(matrice, resultat_ml);
+        ml.transposer(resultat_ml);
         resultat_ml.afficherMatriceFormeLineaire();
 
         System.out.println("MatriceCreuse transposee = ");
-        resultat_cr = (MatriceCreuse)mc.transposer(matrice, resultat_cr);
+        mc.transposer(resultat_cr);
         resultat_cr.afficherPartMatrice();
         
     }

@@ -1,7 +1,3 @@
-package Matrice;
-
-import PartMatriceLineaire.PartManagerLineaire;
-
 /***********************************************************************************************************************************************
 
                                                                 MatriceLineaire
@@ -14,6 +10,10 @@ Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Pro
 
 
 ************************************************************************************************************************************************/
+
+package Matrice;
+
+import PartMatriceLineaire.PartManagerLineaire;
 
 public class MatriceLineaire extends Matrice
 {    

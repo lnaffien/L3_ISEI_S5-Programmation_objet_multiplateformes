@@ -188,14 +188,14 @@ public abstract class Matrice
         return resultat;
     }
 
-    public Matrice transposer(Matrice m_initiale, Matrice transpose)
+    /**
+     * Transpose la matrice donnee en parametres.
+     * @param transpose matrice a transposer
+     * @return matrice resultat de la transposition
+     */
+    public Matrice transposer(Matrice transpose)
     {
-        if(m_initiale.taille != transpose.taille)
-        {
-            throw new ArithmeticException("Matrice : transposer : la matrice resultat n'est pas de la meme taille que la matrice initiale");
-        }
-        transpose.partManager.transposer();
-        
+        transpose.partManager.transposer();        
         return transpose;
     }    
 

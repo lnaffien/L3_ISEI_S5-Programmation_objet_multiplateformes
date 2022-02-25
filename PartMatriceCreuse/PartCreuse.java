@@ -1,8 +1,21 @@
+/***********************************************************************************************************************************************
+
+                                                                PartCreuse
+                                                                            par NAFFIEN Lucie (janvier 2022)
+
+Cette classe appartient a un projet realise pour le module "Programmation objet multiplateformes", enseigne par M. MARIAGE, dans le cadre 
+de la 3eme annee de licence parcours Informatique des Systemes Embarques et Interactifs de l'Universite Paris 8.
+
+Lien github de l'ensemble du projet : https://github.com/lnaffien/L3_ISEI_S5-Programmation_objet_multiplateformes
+
+
+************************************************************************************************************************************************/
+
 package PartMatriceCreuse;
 
 abstract class PartCreuse
 {
-    int values_array[][];                // Tableau 2D contenant les valeurs de la partie de la matrice de facon dense.
+    int values_array[][];                       // Tableau 2D contenant les valeurs de la partie de la matrice de facon dense.
     final int VALUES_ARRAY_NBR_COLONNES = 2;    // Nombre de colonnes du tableau de donnees.
     final int VALUES_ARRAY_OFFSET = 0;          // Position de l'offset dans le tableau.
     final int VALUES_ARRAY_VALUE = 1;           // Position de la valeur dans le tableau.
