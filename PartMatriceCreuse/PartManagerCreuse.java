@@ -77,19 +77,31 @@ public class PartManagerCreuse implements PartManager
     public void transposer()
     {
         int offset;
-        PartSupCreuse partSupTmp = partSupCr;
+        final int VALUES_ARRAY_OFFSET = ((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET;
+        final int VALUES_ARRAY_VALUE = ((PartCreuse)partInfCr).VALUES_ARRAY_VALUE;
+        int[][] partSupTmp = partSupCr.values_array;
 
-        for(int i = 0; i < partInfCr.values_array.length; i++)
+        // Suppression des donnees de la partie superieure
+        while(partSupCr.values_array.length != 0)
+        {
+            offset = partSupCr.values_array[0][VALUES_ARRAY_OFFSET];
+            supprimerValeur(partSupCr.getHauteur(offset), partSupCr.getLargeur(offset));
+        }
+
+        // Transposition de la partie inferieure vers la partie superieure
+        while(partInfCr.values_array.length != 0)
         {            
-            offset = this.partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
-            ajouterValeur(this.partInfCr.getLargeur(offset), this.partInfCr.getHauteur(offset), partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_VALUE]);
+            offset = this.partInfCr.values_array[0][VALUES_ARRAY_OFFSET];
+            ajouterValeur(this.partInfCr.getLargeur(offset), this.partInfCr.getHauteur(offset), partInfCr.values_array[0][VALUES_ARRAY_VALUE]);
+            // Suppression des valeurs de la partie inferieure ajoutees
             supprimerValeur(partInfCr.getHauteur(offset), partInfCr.getLargeur(offset));
         }
 
-        for(int i = 0; i< partSupTmp.values_array.length; i++)
+        // Transposition des anciennes donnees superieures vers la partie inferieure
+        for(int i = 0; i < partSupTmp.length; i++)
         {
-            offset = partSupTmp.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
-            ajouterValeur(partSupTmp.getLargeur(offset), partSupTmp.getHauteur(offset), partSupTmp.values_array[i][((PartCreuse)partSupTmp).VALUES_ARRAY_VALUE]);
+            offset = partSupTmp[i][VALUES_ARRAY_OFFSET];
+            ajouterValeur(partSupCr.getLargeur(offset), partSupCr.getHauteur(offset), partSupTmp[i][VALUES_ARRAY_VALUE]);
         }
     }
     
