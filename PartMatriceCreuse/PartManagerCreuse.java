@@ -17,10 +17,26 @@ import Matrice.PartManager;
 
 public class PartManagerCreuse implements PartManager
 {    
+    /*************************************************
+     * 
+     *              Variables globales
+     * 
+     *************************************************/
+
     PartDiagonalCreuse partDiagCr;  // Diagonale de la matrice creuse.
     PartSupCreuse partSupCr;        // Partie superieure de la matrice creuse.
     PartInfCreuse partInfCr;        // Partie inferieure de la matrice creuse.
 
+    /*************************************************
+     * 
+     *              Constructeurs
+     * 
+     *************************************************/
+
+    /**
+     * Constructeur.
+     * @param taille taille de la matrice carree
+     */
     public PartManagerCreuse(int taille)
     {        
         partDiagCr = new PartDiagonalCreuse(taille);
@@ -28,6 +44,18 @@ public class PartManagerCreuse implements PartManager
         partInfCr = new PartInfCreuse(taille);
     }
 
+    /*************************************************
+     * 
+     *              Methodes
+     * 
+     *************************************************/
+
+    /**
+     * Recupere un valeur stockée a une position donnee.
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
+     * @return valeur a la position donnee
+     */
     public int getValueFromIndex(int hauteur, int largeur)
     {
         if(hauteur == largeur)
@@ -44,6 +72,12 @@ public class PartManagerCreuse implements PartManager
         }
     }
 
+    /**
+     * Modifie une valeur a une position donnee dans la matrice.
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
+     * @param valeur nouvelle valeur a ajouter
+     */
     public void ajouterValeur(int hauteur, int largeur, int valeur)
     {
         if(hauteur == largeur)
@@ -61,6 +95,11 @@ public class PartManagerCreuse implements PartManager
 
     }
 
+    /**
+     * Supprime une valeur a une position donnee.
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la hauteur de la matrice
+     */
     public void supprimerValeur(int hauteur, int largeur)
     {
         if(hauteur == largeur)
@@ -77,6 +116,9 @@ public class PartManagerCreuse implements PartManager
         }
     }
 
+    /**
+     * Affiche la matrice telle qu'elle est stockee.
+     */
     public void afficherPartMatrice()
     {
         System.out.println("Diagonale :");
@@ -87,6 +129,9 @@ public class PartManagerCreuse implements PartManager
         partSupCr.display();
     }    
 
+    /**
+     * Transpose la matrice.
+     */
     public void transposer()
     {
         int offset;

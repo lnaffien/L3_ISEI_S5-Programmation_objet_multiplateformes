@@ -16,11 +16,27 @@ package PartMatriceLineaire;
 import Matrice.PartManager;
 
 public class PartManagerLineaire implements PartManager
-{    
+{
+    /*************************************************
+     * 
+     *              Variables globales
+     * 
+     *************************************************/
+
     private PartDiagonal partDiag;  // Diagonale de la matrice.
     private PartSup partSup;        // Partie superieure de la matrice.
     private PartInf partInf;        // Partie inferieure de la matrice.
 
+    /*************************************************
+     * 
+     *              Constructeurs
+     * 
+     *************************************************/
+
+    /**
+     * Constructeur.
+     * @param taille taille de la matrice carree
+     */
     public PartManagerLineaire(int taille)
     {        
         partDiag = new PartDiagonal(taille);
@@ -28,6 +44,18 @@ public class PartManagerLineaire implements PartManager
         partSup = new PartSup(taille);
     }
 
+    /*************************************************
+     * 
+     *              Methodes
+     * 
+     *************************************************/
+
+    /**
+     * Recupere un valeur stockée a une position donnee.
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
+     * @return valeur a la position donnee
+     */
     public int getValueFromIndex(int hauteur, int largeur)
     {
         if(hauteur == largeur)
@@ -44,6 +72,12 @@ public class PartManagerLineaire implements PartManager
         }
     }
 
+    /**
+     * Modifie une valeur a une position donnee dans la matrice.
+     * @param hauteur position dans la hauteur de la matrice
+     * @param largeur position dans la largeur de la matrice
+     * @param valeur nouvelle valeur a ajouter
+     */
     public void ajouterValeur(int hauteur, int largeur, int valeur)
     {
         if(hauteur == largeur)
@@ -61,6 +95,9 @@ public class PartManagerLineaire implements PartManager
 
     }
 
+    /**
+     * Affiche la matrice telle qu'elle est stockee.
+     */
     public void afficherPartMatrice()
     {
         System.out.println("Diagonale :");
@@ -71,6 +108,9 @@ public class PartManagerLineaire implements PartManager
         partSup.display();
     }    
 
+    /**
+     * Transpose la matrice.
+     */
     public void transposer()
     {
         for(int i = 0; i < partInf.values_array.length; i++)
