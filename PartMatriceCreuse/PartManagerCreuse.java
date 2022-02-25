@@ -74,26 +74,23 @@ public class PartManagerCreuse implements PartManager
         partSupCr.display();
     }    
 
-    public PartManagerCreuse transposer()
+    public void transposer()
     {
-        PartManagerCreuse res_creuse = new PartManagerCreuse(partSupCr.taille);
-        res_creuse.partDiagCr = this.partDiagCr;
-
         int offset;
+        PartSupCreuse partSupTmp = partSupCr;
 
-        for(int i = 0; i < partSupCr.values_array.length; i++)
+        for(int i = 0; i < partInfCr.values_array.length; i++)
         {            
-            offset = this.partSupCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
-            res_creuse.ajouterValeur(this.partSupCr.getLargeur(offset), this.partSupCr.getHauteur(offset), partSupCr.values_array[i][((PartCreuse)partSupCr).VALUES_ARRAY_VALUE]);
-        }
-
-        for(int i = 0; i< partInfCr.values_array.length; i++)
-        {
             offset = this.partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
-            res_creuse.ajouterValeur(this.partInfCr.getLargeur(offset), this.partInfCr.getHauteur(offset), partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_VALUE]);
+            ajouterValeur(this.partInfCr.getLargeur(offset), this.partInfCr.getHauteur(offset), partInfCr.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_VALUE]);
+            supprimerValeur(partInfCr.getHauteur(offset), partInfCr.getLargeur(offset));
         }
 
-        return res_creuse;
+        for(int i = 0; i< partSupTmp.values_array.length; i++)
+        {
+            offset = partSupTmp.values_array[i][((PartCreuse)partInfCr).VALUES_ARRAY_OFFSET];
+            ajouterValeur(partSupTmp.getLargeur(offset), partSupTmp.getHauteur(offset), partSupTmp.values_array[i][((PartCreuse)partSupTmp).VALUES_ARRAY_VALUE]);
+        }
     }
     
 }

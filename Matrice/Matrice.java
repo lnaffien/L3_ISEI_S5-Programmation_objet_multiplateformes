@@ -101,6 +101,9 @@ public abstract class Matrice
         this.partManager.ajouterValeur(hauteur, largeur, valeur);
     }
 
+    /**
+     * Affiche la matrice telle qu'elle est stockee.
+     */
     public void afficherPartMatrice()
     {
         partManager.afficherPartMatrice();
@@ -191,8 +194,8 @@ public abstract class Matrice
         {
             throw new ArithmeticException("Matrice : transposer : la matrice resultat n'est pas de la meme taille que la matrice initiale");
         }
-        transpose = m_initiale;
         transpose.partManager.transposer();
+        
         return transpose;
     }    
 
