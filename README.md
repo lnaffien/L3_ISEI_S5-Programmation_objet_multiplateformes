@@ -1,4 +1,4 @@
-# L3_ISEI_S5-Programmation_objet_multiplateforme
+# L3_ISEI_S5-Programmation_objet_multiplateformes
 
 ## Enoncé : 
 1. Créer un programme permettant de gérer des matrices carrées sous 2 formes différentes : 
